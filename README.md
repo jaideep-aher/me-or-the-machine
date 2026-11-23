@@ -140,9 +140,9 @@ The public test posts each finished round to a Supabase table (`me_or_machine_re
 
 A convincing twin is an impersonation tool. This repository ships no automated twin, sends no messages, and holds only benign one-liners. The people most exposed are friends and family of anyone whose assistant holds their data; the result suggests that "I would know if it wasn't them" is not a safe assumption for short messages.
 
-## Context: Jarvis, the assistant I built
+## Context: Jarvis, my shot at giving an AI my whole life
 
-Alongside the pendant I built Jarvis, a personal AI coach that reads my Canvas deadlines, texts and then calls me with a voice agent, uses Claude agents to judge what I promise, and senses my location, app use and wake time from my phone. Its roadmap includes a "twin" stage built on the Bee pendant's live stream. This project tests the risky half of that idea first. The site shows the Bee app's own inferred "facts" about me and a Jarvis screen-time view (test data).
+Before this project I built Jarvis (private repo `coach`), a personal AI connected to almost everything about me: Bee pendant conversations, Gmail, Google Calendar, Tasks, Docs and Sheets, Canvas deadlines, phone location and app use, my Mac's activity and coding sessions, and Google Health data. It builds People and Memory pages from them and has a chat that answers from my records. It texts and calls me before deadlines, and its roadmap includes a "twin" stage. This project tests the first danger of such a system: can an AI already pass as me?
 
 ## What an AI recorder holds, and why I worry about it
 
