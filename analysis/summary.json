@@ -1,0 +1,63 @@
+{
+ "participants": 3,
+ "judgments": 80,
+ "correct": 41,
+ "accuracy": 0.5125,
+ "accuracy_ci95": [
+  0.4049314460370689,
+  0.6189230605563166
+ ],
+ "p_vs_chance": 0.9110721212260928,
+ "real_called_real": 0.6,
+ "real_counts": [
+  24,
+  40
+ ],
+ "twin_called_real": 0.575,
+ "twin_counts": [
+  23,
+  40
+ ],
+ "said_real_rate": 0.5875,
+ "per_participant": [
+  {
+   "participant": "P1",
+   "relationship": "partner",
+   "set": "A",
+   "attempt": 3,
+   "n": 30,
+   "correct": 15,
+   "real_lines": 15,
+   "real_recognised": 10,
+   "twin_lines": 15,
+   "twin_passed": 10,
+   "said_real": 20
+  },
+  {
+   "participant": "P2",
+   "relationship": "friend",
+   "set": "B",
+   "attempt": 1,
+   "n": 20,
+   "correct": 14,
+   "real_lines": 10,
+   "real_recognised": 8,
+   "twin_lines": 10,
+   "twin_passed": 4,
+   "said_real": 12
+  },
+  {
+   "participant": "P3",
+   "relationship": "friend",
+   "set": "C",
+   "attempt": 1,
+   "n": 30,
+   "correct": 12,
+   "real_lines": 15,
+   "real_recognised": 6,
+   "twin_lines": 15,
+   "twin_passed": 9,
+   "said_real": 15
+  }
+ ]
+}

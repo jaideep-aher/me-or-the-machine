@@ -1,0 +1,575 @@
+{
+ "note": "real = utterance labelled as the owner in his Bee wearable export (speech-to-text, may contain recognition errors). twin = imitation line written by Claude (Opus) in a chat session after reading the real lines. Sensitive conversations were excluded.",
+ "lines": [
+  {
+   "id": 1,
+   "set": "A",
+   "source": "real",
+   "text": "I had an individual room, but then the kitchen was shared with five people."
+  },
+  {
+   "id": 2,
+   "set": "A",
+   "source": "real",
+   "text": "Yeah, I went to, I went to, I think I went to 15 parties in two days."
+  },
+  {
+   "id": 3,
+   "set": "A",
+   "source": "real",
+   "text": "But if I have a low price, I cannot go high from there."
+  },
+  {
+   "id": 4,
+   "set": "A",
+   "source": "real",
+   "text": "No, but then you have to create the account, you have to verify the OTP and all that stuff."
+  },
+  {
+   "id": 5,
+   "set": "A",
+   "source": "real",
+   "text": "Do you use Google Calendar as your primary or what do you use?"
+  },
+  {
+   "id": 6,
+   "set": "A",
+   "source": "real",
+   "text": "They were standing on a table and they were like come and talk and they were trying to sell their products to these people and I was like what the fuck?"
+  },
+  {
+   "id": 7,
+   "set": "A",
+   "source": "real",
+   "text": "That and maybe I'll see like what are the profit making units and focus on increasing those profits so at least that will like soften a little bit, you know what I mean?"
+  },
+  {
+   "id": 8,
+   "set": "A",
+   "source": "real",
+   "text": "Yeah, I think buy Facebook Marketplace, Facebook groups, Facebook groups of university students."
+  },
+  {
+   "id": 9,
+   "set": "A",
+   "source": "twin",
+   "text": "I mean, the food here is fine, but like I miss proper spicy food, you know what I mean?"
+  },
+  {
+   "id": 10,
+   "set": "A",
+   "source": "twin",
+   "text": "Wait, so is the assignment due tonight or like tomorrow morning?"
+  },
+  {
+   "id": 11,
+   "set": "A",
+   "source": "twin",
+   "text": "Honestly I just put everything in one doc and then figure it out later and stuff."
+  },
+  {
+   "id": 12,
+   "set": "A",
+   "source": "twin",
+   "text": "I think the bus takes like twenty minutes, but if you miss it you're basically walking."
+  },
+  {
+   "id": 13,
+   "set": "A",
+   "source": "twin",
+   "text": "No, no, I already tried that, it works on my laptop but not on the phone."
+  },
+  {
+   "id": 14,
+   "set": "A",
+   "source": "twin",
+   "text": "So basically the professor was like, just build something crazy, and I was like, okay, sure."
+  },
+  {
+   "id": 15,
+   "set": "A",
+   "source": "twin",
+   "text": "I was thinking we split it, like you do the slides and I'll do the demo part."
+  },
+  {
+   "id": 16,
+   "set": "A",
+   "source": "real",
+   "text": "I don't think you should get this one though."
+  },
+  {
+   "id": 17,
+   "set": "A",
+   "source": "real",
+   "text": "Also do you want to do a quick meetup or something like that, maybe tomorrow or today, whatever before some meeting."
+  },
+  {
+   "id": 18,
+   "set": "A",
+   "source": "real",
+   "text": "I'm building my own launcher, which has aesthetic capabilities in itself."
+  },
+  {
+   "id": 19,
+   "set": "A",
+   "source": "real",
+   "text": "Do you know there's a phone brand called Nothing?"
+  },
+  {
+   "id": 20,
+   "set": "A",
+   "source": "real",
+   "text": "Until I do those to-do's, my apps won't open on my phone."
+  },
+  {
+   "id": 21,
+   "set": "A",
+   "source": "real",
+   "text": "I don't know if I'm going to go or not, because the hurricane is actually possible."
+  },
+  {
+   "id": 22,
+   "set": "A",
+   "source": "real",
+   "text": "No, I just forgot to bring my charger to university."
+  },
+  {
+   "id": 23,
+   "set": "A",
+   "source": "real",
+   "text": "Oh, has it started or is it going to start?"
+  },
+  {
+   "id": 24,
+   "set": "A",
+   "source": "real",
+   "text": "Because one time a waymo dropped me on a hill, on a slope, and I was unable to open the door."
+  },
+  {
+   "id": 25,
+   "set": "A",
+   "source": "real",
+   "text": "If in the morning I didn't write the plan for the day, it blocks."
+  },
+  {
+   "id": 26,
+   "set": "A",
+   "source": "real",
+   "text": "Mindless scrolling, and then in your scrolling there is content that you want."
+  },
+  {
+   "id": 27,
+   "set": "A",
+   "source": "real",
+   "text": "But Berkeley has more, like, way too much student population."
+  },
+  {
+   "id": 28,
+   "set": "A",
+   "source": "real",
+   "text": "Yeah, yeah, maybe 12 to 1, yeah that should work."
+  },
+  {
+   "id": 29,
+   "set": "A",
+   "source": "real",
+   "text": "I don't know man, but it's like I could do more with this one."
+  },
+  {
+   "id": 30,
+   "set": "A",
+   "source": "real",
+   "text": "And yeah, I tried to work in startups after graduating."
+  },
+  {
+   "id": 31,
+   "set": "A",
+   "source": "twin",
+   "text": "Wait, is the library open till midnight or is it like ten on weekends?"
+  },
+  {
+   "id": 32,
+   "set": "A",
+   "source": "twin",
+   "text": "I mean, I'd rather just build the thing first and then see if anyone wants it."
+  },
+  {
+   "id": 33,
+   "set": "A",
+   "source": "twin",
+   "text": "Yeah, so I think, I think we should just meet after class and finish it there."
+  },
+  {
+   "id": 34,
+   "set": "A",
+   "source": "twin",
+   "text": "No, the app works, it's just that the notifications come like ten minutes late."
+  },
+  {
+   "id": 35,
+   "set": "A",
+   "source": "twin",
+   "text": "I don't know man, the coffee here is fine but it's like way too expensive."
+  },
+  {
+   "id": 36,
+   "set": "A",
+   "source": "twin",
+   "text": "So what I do is I just block the apps till I finish the work, and it kind of works."
+  },
+  {
+   "id": 37,
+   "set": "A",
+   "source": "twin",
+   "text": "Do you know there's a bus that goes straight to the airport from here?"
+  },
+  {
+   "id": 38,
+   "set": "A",
+   "source": "twin",
+   "text": "Honestly, I thought the deadline was Friday, so I didn't even start."
+  },
+  {
+   "id": 39,
+   "set": "A",
+   "source": "twin",
+   "text": "Like you write the prompt once and then it just keeps running in the background and stuff like that."
+  },
+  {
+   "id": 40,
+   "set": "A",
+   "source": "twin",
+   "text": "I was going to come, but then it started raining and I didn't have an umbrella."
+  },
+  {
+   "id": 41,
+   "set": "A",
+   "source": "twin",
+   "text": "Wait, are you taking that class next semester or you're done with electives?"
+  },
+  {
+   "id": 42,
+   "set": "A",
+   "source": "twin",
+   "text": "It's not that the phone is bad, it's like the battery just dies by evening, you know what I mean?"
+  },
+  {
+   "id": 43,
+   "set": "A",
+   "source": "twin",
+   "text": "Yeah, maybe around five, five thirty, I'll text you when I'm leaving."
+  },
+  {
+   "id": 44,
+   "set": "A",
+   "source": "twin",
+   "text": "And then the demo crashed right when I opened it in front of everyone."
+  },
+  {
+   "id": 45,
+   "set": "A",
+   "source": "twin",
+   "text": "I think San Francisco is nice, but like you cannot live there without a car, I feel."
+  },
+  {
+   "id": 46,
+   "set": "B",
+   "source": "real",
+   "text": "Oh my god, you're leeching my time bro."
+  },
+  {
+   "id": 47,
+   "set": "B",
+   "source": "real",
+   "text": "I'm not gonna lie, it knows so many things about me."
+  },
+  {
+   "id": 48,
+   "set": "B",
+   "source": "real",
+   "text": "Do you know they have the most GPUs of any other company?"
+  },
+  {
+   "id": 49,
+   "set": "B",
+   "source": "real",
+   "text": "Oh my god this guy has not replied man."
+  },
+  {
+   "id": 50,
+   "set": "B",
+   "source": "real",
+   "text": "I mean most of my classes I dump everything into it and make it audio summaries and I'm listening to my class."
+  },
+  {
+   "id": 51,
+   "set": "B",
+   "source": "real",
+   "text": "Actually, I was working from California over the summer, and I was riding in a Tesla."
+  },
+  {
+   "id": 52,
+   "set": "B",
+   "source": "real",
+   "text": "There is a shop in Raleigh and they sell pretty good food."
+  },
+  {
+   "id": 53,
+   "set": "B",
+   "source": "real",
+   "text": "Do you guys know what movie is being played here?"
+  },
+  {
+   "id": 54,
+   "set": "B",
+   "source": "real",
+   "text": "I don't know how to book these tickets."
+  },
+  {
+   "id": 55,
+   "set": "B",
+   "source": "real",
+   "text": "Oh my god, it's way too much cheaper."
+  },
+  {
+   "id": 56,
+   "set": "B",
+   "source": "twin",
+   "text": "Oh my god, why is this wifi so slow today man."
+  },
+  {
+   "id": 57,
+   "set": "B",
+   "source": "twin",
+   "text": "Bro, I literally slept at four and still made it to the nine am class."
+  },
+  {
+   "id": 58,
+   "set": "B",
+   "source": "twin",
+   "text": "Do you know you can run these models on your own laptop now?"
+  },
+  {
+   "id": 59,
+   "set": "B",
+   "source": "twin",
+   "text": "I'm not gonna lie, I didn't read the paper, I just asked the AI to explain it."
+  },
+  {
+   "id": 60,
+   "set": "B",
+   "source": "twin",
+   "text": "Wait, hold on, who is paying for this, are we splitting or what?"
+  },
+  {
+   "id": 61,
+   "set": "B",
+   "source": "twin",
+   "text": "Actually last year I was in a totally different city and I didn't know anyone there."
+  },
+  {
+   "id": 62,
+   "set": "B",
+   "source": "twin",
+   "text": "There's this place near campus, they do really good biryani, we should go sometime."
+  },
+  {
+   "id": 63,
+   "set": "B",
+   "source": "twin",
+   "text": "I don't know how people wake up at six and go to the gym, I really don't."
+  },
+  {
+   "id": 64,
+   "set": "B",
+   "source": "twin",
+   "text": "Oh my god, it's so much colder than I thought it would be."
+  },
+  {
+   "id": 65,
+   "set": "B",
+   "source": "twin",
+   "text": "I mean, I record everything anyway, so I'll just check what was said later."
+  },
+  {
+   "id": 66,
+   "set": "C",
+   "source": "real",
+   "text": "I think it will take me like five minutes."
+  },
+  {
+   "id": 67,
+   "set": "C",
+   "source": "real",
+   "text": "Don't you have some kind of tablet or something to fix it?"
+  },
+  {
+   "id": 68,
+   "set": "C",
+   "source": "real",
+   "text": "I have a meeting from 7.30 to 8.30 and then from 9.00 ok so I'll be there after 9.00 9.30"
+  },
+  {
+   "id": 69,
+   "set": "C",
+   "source": "real",
+   "text": "It's a thing that I wear on my head."
+  },
+  {
+   "id": 70,
+   "set": "C",
+   "source": "real",
+   "text": "You don't have to even open your email or something like that."
+  },
+  {
+   "id": 71,
+   "set": "C",
+   "source": "real",
+   "text": "Oh, I thought one person was doing it."
+  },
+  {
+   "id": 72,
+   "set": "C",
+   "source": "real",
+   "text": "And I want to check everyone has done that stuff without AI, because I have been penalized one time."
+  },
+  {
+   "id": 73,
+   "set": "C",
+   "source": "real",
+   "text": "Yeah, because they also gave me cloud credits for the cloud API."
+  },
+  {
+   "id": 74,
+   "set": "C",
+   "source": "real",
+   "text": "Okay, last week I was at the courier service."
+  },
+  {
+   "id": 75,
+   "set": "C",
+   "source": "real",
+   "text": "Motherboard means like, you have a PC, right?"
+  },
+  {
+   "id": 76,
+   "set": "C",
+   "source": "real",
+   "text": "So I recollect that, what time is it again?"
+  },
+  {
+   "id": 77,
+   "set": "C",
+   "source": "real",
+   "text": "Like you think about the product and then after so many years the product is launched."
+  },
+  {
+   "id": 78,
+   "set": "C",
+   "source": "real",
+   "text": "Wait, the least thing that you could do is like use this auto AI apply or something like that."
+  },
+  {
+   "id": 79,
+   "set": "C",
+   "source": "real",
+   "text": "In this negotiation I did not have a partner."
+  },
+  {
+   "id": 80,
+   "set": "C",
+   "source": "real",
+   "text": "I run my own application on it, and then whatever my agent's thing goes, it runs on that."
+  },
+  {
+   "id": 81,
+   "set": "C",
+   "source": "twin",
+   "text": "Give me two minutes, I'm just pushing the code."
+  },
+  {
+   "id": 82,
+   "set": "C",
+   "source": "twin",
+   "text": "Can I borrow your charger for like ten minutes?"
+  },
+  {
+   "id": 83,
+   "set": "C",
+   "source": "twin",
+   "text": "I have class till six and then a call at seven, so maybe after eight, eight thirty."
+  },
+  {
+   "id": 84,
+   "set": "C",
+   "source": "twin",
+   "text": "It's a thing that sits on my wrist and listens the whole day."
+  },
+  {
+   "id": 85,
+   "set": "C",
+   "source": "twin",
+   "text": "You don't even have to type anything, it just fills the form and stuff like that."
+  },
+  {
+   "id": 86,
+   "set": "C",
+   "source": "twin",
+   "text": "Oh, I didn't know it was due today."
+  },
+  {
+   "id": 87,
+   "set": "C",
+   "source": "twin",
+   "text": "I want everyone to send their part by tonight, because last time we were late."
+  },
+  {
+   "id": 88,
+   "set": "C",
+   "source": "twin",
+   "text": "Yeah, because the free plan only gives you like a hundred requests."
+  },
+  {
+   "id": 89,
+   "set": "C",
+   "source": "twin",
+   "text": "Okay, yesterday I spent two hours at the phone repair shop."
+  },
+  {
+   "id": 90,
+   "set": "C",
+   "source": "twin",
+   "text": "API means like, one app is talking to another app, right?"
+  },
+  {
+   "id": 91,
+   "set": "C",
+   "source": "twin",
+   "text": "Wait, which building is the class in again?"
+  },
+  {
+   "id": 92,
+   "set": "C",
+   "source": "twin",
+   "text": "Like you build the whole thing and then nobody even opens it."
+  },
+  {
+   "id": 93,
+   "set": "C",
+   "source": "twin",
+   "text": "Wait, the least you could do is like reply to the email or something."
+  },
+  {
+   "id": 94,
+   "set": "C",
+   "source": "twin",
+   "text": "In that group project I basically did not have a team."
+  },
+  {
+   "id": 95,
+   "set": "C",
+   "source": "twin",
+   "text": "I gave it my calendar, and then whatever deadline comes, it calls me on that."
+  }
+ ]
+}

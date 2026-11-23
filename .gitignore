@@ -1,0 +1,6 @@
+# Raw result exports carry judges' first names; the anonymised copy is data/results.json
+data/raw_results/
+.DS_Store
+__pycache__/
+.claude/
+.impeccable/

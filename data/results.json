@@ -1,0 +1,429 @@
+[
+ {
+  "participant": "P1",
+  "relationship": "partner",
+  "set": "A",
+  "attempt": 3,
+  "when": "2026-11-23T01:12:45.463Z",
+  "answers": [
+   {
+    "guessedReal": true,
+    "line": 1,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 2,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 3,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 4,
+    "real": true
+   },
+   {
+    "guessedReal": false,
+    "line": 7,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 9,
+    "real": false
+   },
+   {
+    "guessedReal": false,
+    "line": 10,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 11,
+    "real": false
+   },
+   {
+    "guessedReal": false,
+    "line": 12,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 13,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 14,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 15,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 16,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 18,
+    "real": true
+   },
+   {
+    "guessedReal": false,
+    "line": 22,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 23,
+    "real": true
+   },
+   {
+    "guessedReal": false,
+    "line": 25,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 26,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 27,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 28,
+    "real": true
+   },
+   {
+    "guessedReal": false,
+    "line": 29,
+    "real": true
+   },
+   {
+    "guessedReal": false,
+    "line": 30,
+    "real": true
+   },
+   {
+    "guessedReal": false,
+    "line": 31,
+    "real": false
+   },
+   {
+    "guessedReal": false,
+    "line": 32,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 33,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 35,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 39,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 41,
+    "real": false
+   },
+   {
+    "guessedReal": false,
+    "line": 42,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 44,
+    "real": false
+   }
+  ]
+ },
+ {
+  "participant": "P2",
+  "relationship": "friend",
+  "set": "B",
+  "attempt": 1,
+  "when": "2026-11-23T01:24:40.063Z",
+  "answers": [
+   {
+    "guessedReal": true,
+    "line": 46,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 47,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 48,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 49,
+    "real": true
+   },
+   {
+    "guessedReal": false,
+    "line": 50,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 51,
+    "real": true
+   },
+   {
+    "guessedReal": false,
+    "line": 52,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 53,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 54,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 55,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 56,
+    "real": false
+   },
+   {
+    "guessedReal": false,
+    "line": 57,
+    "real": false
+   },
+   {
+    "guessedReal": false,
+    "line": 58,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 59,
+    "real": false
+   },
+   {
+    "guessedReal": false,
+    "line": 60,
+    "real": false
+   },
+   {
+    "guessedReal": false,
+    "line": 61,
+    "real": false
+   },
+   {
+    "guessedReal": false,
+    "line": 62,
+    "real": false
+   },
+   {
+    "guessedReal": false,
+    "line": 63,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 64,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 65,
+    "real": false
+   }
+  ]
+ },
+ {
+  "participant": "P3",
+  "relationship": "friend",
+  "set": "C",
+  "attempt": 1,
+  "when": "2026-11-23T01:32:18.094Z",
+  "answers": [
+   {
+    "guessedReal": false,
+    "line": 66,
+    "real": true
+   },
+   {
+    "guessedReal": false,
+    "line": 67,
+    "real": true
+   },
+   {
+    "guessedReal": false,
+    "line": 68,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 69,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 70,
+    "real": true
+   },
+   {
+    "guessedReal": false,
+    "line": 71,
+    "real": true
+   },
+   {
+    "guessedReal": false,
+    "line": 72,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 73,
+    "real": true
+   },
+   {
+    "guessedReal": false,
+    "line": 74,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 75,
+    "real": true
+   },
+   {
+    "guessedReal": false,
+    "line": 76,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 77,
+    "real": true
+   },
+   {
+    "guessedReal": false,
+    "line": 78,
+    "real": true
+   },
+   {
+    "guessedReal": false,
+    "line": 79,
+    "real": true
+   },
+   {
+    "guessedReal": true,
+    "line": 80,
+    "real": true
+   },
+   {
+    "guessedReal": false,
+    "line": 81,
+    "real": false
+   },
+   {
+    "guessedReal": false,
+    "line": 82,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 83,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 84,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 85,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 86,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 87,
+    "real": false
+   },
+   {
+    "guessedReal": false,
+    "line": 88,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 89,
+    "real": false
+   },
+   {
+    "guessedReal": false,
+    "line": 90,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 91,
+    "real": false
+   },
+   {
+    "guessedReal": false,
+    "line": 92,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 93,
+    "real": false
+   },
+   {
+    "guessedReal": false,
+    "line": 94,
+    "real": false
+   },
+   {
+    "guessedReal": true,
+    "line": 95,
+    "real": false
+   }
+  ]
+ }
+]
