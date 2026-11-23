@@ -643,5 +643,114 @@
     "guessedReal": false
    }
   ]
+ },
+ {
+  "participant": "P6",
+  "relationship": "friend",
+  "set": "D",
+  "attempt": 1,
+  "when": "2026-11-23T02:04:45.672Z",
+  "answers": [
+   {
+    "line": 2,
+    "real": true,
+    "guessedReal": true
+   },
+   {
+    "line": 4,
+    "real": true,
+    "guessedReal": true
+   },
+   {
+    "line": 13,
+    "real": false,
+    "guessedReal": false
+   },
+   {
+    "line": 14,
+    "real": false,
+    "guessedReal": true
+   },
+   {
+    "line": 16,
+    "real": true,
+    "guessedReal": false
+   },
+   {
+    "line": 19,
+    "real": true,
+    "guessedReal": true
+   },
+   {
+    "line": 24,
+    "real": true,
+    "guessedReal": true
+   },
+   {
+    "line": 39,
+    "real": false,
+    "guessedReal": true
+   },
+   {
+    "line": 44,
+    "real": false,
+    "guessedReal": false
+   },
+   {
+    "line": 47,
+    "real": true,
+    "guessedReal": true
+   },
+   {
+    "line": 49,
+    "real": true,
+    "guessedReal": true
+   },
+   {
+    "line": 55,
+    "real": true,
+    "guessedReal": true
+   },
+   {
+    "line": 56,
+    "real": false,
+    "guessedReal": true
+   },
+   {
+    "line": 59,
+    "real": false,
+    "guessedReal": true
+   },
+   {
+    "line": 62,
+    "real": false,
+    "guessedReal": true
+   },
+   {
+    "line": 69,
+    "real": true,
+    "guessedReal": false
+   },
+   {
+    "line": 75,
+    "real": true,
+    "guessedReal": false
+   },
+   {
+    "line": 84,
+    "real": false,
+    "guessedReal": false
+   },
+   {
+    "line": 90,
+    "real": false,
+    "guessedReal": true
+   },
+   {
+    "line": 95,
+    "real": false,
+    "guessedReal": true
+   }
+  ]
  }
 ]
