@@ -121,9 +121,9 @@ page = f"""<!doctype html>
 @page {{ size: 24in 24in; margin: 0 }}
 *{{box-sizing:border-box}}
 html,body{{margin:0;width:2304px;height:2304px;background:#EEF1F4;color:{INK};font-family:"Instrument Sans","Helvetica Neue",sans-serif;font-size:27px;line-height:1.38;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
-.page{{width:2304px;height:2304px;padding:76px 96px 64px;display:grid;grid-template-rows:auto auto 1fr auto;gap:30px}}
+.page{{width:2304px;height:2304px;padding:64px 96px 56px;display:grid;grid-template-rows:auto auto 1fr auto;gap:30px}}
 h1,h2,h3{{font-family:"Bricolage Grotesque",sans-serif;margin:0}}
-h1{{font-weight:800;font-size:104px;line-height:.92;letter-spacing:-.03em}}
+h1{{font-weight:800;font-size:86px;line-height:.95;letter-spacing:-.03em}}
 .kick{{font-family:"Bricolage Grotesque";font-weight:700;font-size:34px;color:{ACC};margin-bottom:10px}}
 .pend{{display:grid;grid-template-columns:54px 1fr;gap:16px;background:#fff;border:2px solid {LINE};border-radius:14px;padding:18px 20px;font-size:23px;color:{MUTED};line-height:1.3}}
 .pend b{{display:block;font-family:"Bricolage Grotesque";font-size:30px;color:{INK};line-height:1.15;margin-bottom:4px}}
@@ -168,35 +168,52 @@ p{{margin:0 0 12px}}
 ul{{margin:0;padding-left:30px}} li{{margin-bottom:10px}}
 .pts div{{padding:8px 0;border-top:2px solid {LINE}}} .pts div:first-child{{border-top:0;padding-top:0}}
 .pts p{{margin:0;font-size:21px;color:{MUTED}}}
-.foot{{display:grid;grid-template-columns:1fr 1.2fr .8fr;gap:48px;border-top:5px solid {INK};padding-top:26px;font-size:20px;color:{MUTED};line-height:1.35}}
+.foot{{display:grid;grid-template-columns:1fr 1.2fr .8fr;gap:44px;border-top:5px solid {INK};padding-top:26px;font-size:20px;color:{MUTED};line-height:1.35}}
 .foot b{{color:{INK}}}
+.scare{{border-left:6px solid {TWIN};background:#fff;border-radius:0 10px 10px 0;padding:14px 18px;font-family:"Bricolage Grotesque";font-weight:500;font-size:25px;line-height:1.3}}
+.holds{{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:8px}}
+.holds h3{{grid-column:1/3;font-size:28px;margin-bottom:4px}}
+.holds div{{background:#fff;border:2px solid {LINE};border-radius:8px;padding:10px 14px;font-size:21px;line-height:1.25}}
+.leaks{{display:grid;gap:12px;border-left:5px solid {TWIN};padding-left:20px}}
+.leaks div{{display:grid;grid-template-columns:78px 1fr;gap:12px;font-size:21px;line-height:1.3;color:{MUTED}}}
+.leaks b{{font-family:"Bricolage Grotesque";font-weight:800;font-size:28px;color:{TWIN};line-height:1.05}}
+.leaks i{{font-style:normal;font-weight:600;color:{INK}}}
+.advice{{background:{INK};color:#EEF1F4;border-radius:12px;padding:20px 24px;margin-top:18px}}
+.advice h3{{color:#fff;font-size:28px;margin-bottom:8px}}
+.advice div{{font-size:21px;line-height:1.3;padding:5px 0 5px 22px;position:relative}}
+.advice div::before{{content:"";position:absolute;left:0;top:14px;width:10px;height:10px;border-radius:50%;background:#F0A067}}
+.nsteps{{margin:0;padding-left:0;list-style:none;counter-reset:n;display:grid;gap:0}}
+.nsteps li{{counter-increment:n;display:grid;grid-template-columns:50px 1fr;gap:6px;padding:10px 0;border-top:2px solid {LINE};font-size:22px;line-height:1.28;color:{MUTED}}}
+.nsteps li:first-child{{border-top:0;padding-top:4px}}
+.nsteps li::before{{content:counter(n);font-family:"Bricolage Grotesque";font-weight:800;font-size:40px;line-height:1;color:{ACC}}}
+.nsteps b{{color:{INK}}}
+.next ol{{margin:6px 0 0;padding-left:26px;columns:2;column-gap:34px;font-size:21px;color:{INK}}} .next li{{margin-bottom:4px;break-inside:avoid}}
+.next>b{{font-family:"Bricolage Grotesque";font-size:30px}}
+
 </style></head><body><div class="page">
 
 <header class="head">
-  <div><div class="kick">Me or the Machine</div><h1>My girlfriend vs. an AI: who knows me better?</h1>
+  <div><div class="kick">Me or the Machine</div><h1>I've been recorded 24/7 for 7 weeks. Now an AI can be me.</h1>
   <div class="by">Jaideep Aher, Duke University, AIPI 590 Responsible AI, fall 2026</div></div>
-  <div><div class="pend">{icon("mic", ACC)}<div><b>A pendant has heard me talk 24/7 for 7 weeks.</b>An AI needed just 48 of my lines from it to write 47 more in my voice.</div></div>
+  <div><div class="pend">{icon("mic", ACC)}<div><b>It only needed 48 of my sentences.</b>A Bee pendant has recorded nearly everything I have said since 2 October. An AI read 48 lines from it and wrote 47 more in my voice.</div></div>
   <div class="q" style="margin-top:18px">My girlfriend scored 50% at telling us apart, on her third try. So would a coin.</div></div>
   <div class="qr"><div id="qr"></div>Take the test, see the charts</div>
 </header>
 
 <section class="row r1">
   <div>
-    <h2>The problem</h2>
-    <div class="chain">
-      <div>{icon("mic")}<div><h3>My speech is recorded</h3><p>A wearable turns every conversation into text.</p></div></div>
-      <div>{icon("leak")}<div><h3>The transcripts leak</h3><p>A breach, an export or a malicious app copies them.</p></div></div>
-      <div>{icon("chip")}<div><h3>An AI learns my voice</h3><p>A language model writes new lines that sound like me.</p></div></div>
-      <div>{icon("msg", TWIN)}<div><h3>A friend gets a text</h3><p>"Lost my card, can you send me 200?" Do they notice?</p></div></div>
-    </div>
-    <div class="figs">
-      <div><b>2M+</b><span>Plaud recorders sold (company figure); Amazon bought Bee, Meta bought Limitless, 2025</span></div>
-      <div><b>$893M</b><span>US losses to AI-enabled scams, FBI 2025</span></div>
-      <div><b>22,000+</b><span>AI-related scam complaints to the FBI, 2025</span></div>
+    <div class="scare">Its AI summaries had picked up my finances and private health information. I never thought of those talks as recorded. It scared me.</div>
+    <div class="holds" style="margin-top:14px"><h3>After 7 weeks, my pendant holds</h3>
+      <div>Every conversation, word for word</div><div>An AI summary of every day</div><div>Where I was</div><div>Other people's words, without their consent</div>
     </div>
     <div>
       <h2 style="margin-top:34px">How the test worked</h2>
-      <p style="font-size:24px">My pendant has recorded nearly everything I have said since 2 October. From it I took <b style="color:{ACC}">48 real lines</b>, after removing anything private. A language model read them and wrote <b style="color:{TWIN}">47 twin lines</b>. Ten people who know me saw one shuffled line at a time and chose "really him" or "AI twin", with no answers until the end. Everyone knew some lines were fake.</p>
+      <p style="font-size:24px">I took <b style="color:{ACC}">48 real lines</b> from the pendant, after removing anything private. A language model read them and wrote <b style="color:{TWIN}">47 twin lines</b>. Ten people who know me judged one shuffled line at a time: "really him" or "AI twin". All knew some were fake.</p>
+    </div>
+    <div style="margin-top:30px">
+    <h2>Twin lines passed as often</h2>
+    <div class="card">{bars()}</div>
+    <p class="muted" style="margin-top:12px;font-size:23px">Sensitivity d′ = {S["signal_detection"]["d_prime"]:.2f} (0 = cannot tell apart). Friends said "him" {S["said_real_rate"]*100:.1f}% of the time, which helps an impostor.</p>
     </div>
 
   </div>
@@ -227,16 +244,22 @@ ul{{margin:0;padding-left:30px}} li{{margin-bottom:10px}}
     </div>
     <h2 style="margin-top:30px">Friends didn't agree</h2>
     <div class="card">{grid()}<div class="legend"><span><i style="background:{ACC}"></i>Said "him"</span><span><i style="background:{TWIN}"></i>Said "AI"</span><span>Columns: the 20 shared lines</span></div></div>
-    <p class="muted" style="margin-top:14px">Agreement was below chance (Fleiss' κ = {kap:.2f}). Majority vote: right on {d["majority_right"]}, wrong on {20-d["majority_right"]-d["majority_tied"]}, tied on {d["majority_tied"]}.</p>
+    <p class="muted" style="margin-top:14px">Agreement was below chance (Fleiss' κ = {kap:.2f}); their majority vote was right on only {d["majority_right"]} of 20.</p>
 
   </div>
 </section>
 
 <section class="row r2">
   <div>
-    <h2>Twin lines passed as often</h2>
-    <div class="card">{bars()}</div>
-    <p class="muted" style="margin-top:14px">Sensitivity d′ = {S["signal_detection"]["d_prime"]:.2f}: zero means no ability to tell them apart. Friends said "him" {S["said_real_rate"]*100:.1f}% of the time, a lean towards trust that helps an impostor.</p>
+    <h2>Next steps</h2>
+    <ol class="nsteps">
+      <li><div><b>A twin that knows nothing about me.</b> The missing control: does personal data matter at all?</div></li>
+      <li><div><b>A twin fed all seven weeks.</b> How much do the recordings themselves add to the risk?</div></li>
+      <li><div><b>Real conversations and a cloned voice,</b> where shared memories should help friends.</div></li>
+      <li><div><b>Can people learn?</b> The live test now gives instant feedback; those rounds show if accuracy rises.</div></li>
+      <li><div><b>Test the defence:</b> does a family check question stop a twin?</div></li>
+      <li><div><b>Audit AI recorders:</b> what each stores, for how long, and who can see it.</div></li>
+    </ol>
   </div>
 
   <div>
@@ -246,19 +269,22 @@ ul{{margin:0;padding-left:30px}} li{{margin-bottom:10px}}
   </div>
 
   <div>
-    <h2>What it means</h2>
-    <div class="pts">
-      <div><h3>Short messages are the weak spot</h3><p>The cheapest attack is one short text, the exact format where people who know me failed.</p></div>
-      <div><h3>Trust works against us</h3><p>Friends default to "it's him". An impostor only needs to not sound wrong.</p></div>
-      <div><h3>Recorded speech is sensitive data</h3><p>Treat wearable transcripts like a password: on the device, kept briefly.</p></div>
-      <div><h3>Agree a check in advance</h3><p>A question only the real person can answer beats trying to spot style.</p></div>
+    <h2>Leaks are not hypothetical</h2>
+    <div class="leaks">
+      <div><b>2023</b><span><i>Amazon, now Bee's owner,</i> paid $25M for keeping kids' Alexa voice recordings after deletion requests.</span></div>
+      <div><b>2023</b><span><i>23andMe:</i> genetic data of 6.9M people stolen, unnoticed for months.</span></div>
+      <div><b>2025</b><span><i>DeepSeek</i> left users' chat logs online with no password.</span></div>
+    </div>
+    <p class="muted" style="font-size:22px;margin:12px 0 0">Leaked pendant data could be used to impersonate you, blackmail you, guess your security answers, find you, and expose everyone you talk to.</p>
+    <div class="advice"><h3>Should you wear one? Think hard. If you do:</h3>
+      <div>Assume it leaks one day; mute it for private talk</div><div>Delete transcripts often; prefer on-device processing</div><div>Strong password, two-factor login, few connected apps</div><div>Agree a family check question; never pay because of a text</div>
     </div>
   </div>
 </section>
 
 <footer class="foot">
-  <div><b>Limits.</b> Ten judges; three 30-line scores were reported, not saved. Twin lines were written with my real lines in view, the best case for the twin. <b>Next:</b> a control twin that knows nothing about me, and longer conversations.</div>
-  <div><b>Ethics.</b> Every judge knew some lines were AI-written; no message was ever sent as me; judges are anonymised. <b>Related work.</b> Turing (1950), Computing Machinery and Intelligence. Jones and Bergen (2025), Large Language Models Pass the Turing Test. Park et al. (2024), Generative Agent Simulations of 1,000 People.</div>
+  <div><b>Limits.</b> Ten judges; three 30-line scores were reported, not saved. Twin lines were written with my real lines in view, the best case for the twin. Real lines keep speech-to-text errors.</div>
+  <div><b>Ethics.</b> Judges knew some lines were AI-written; nothing was sent as me. <b>Related work.</b> Turing (1950), Computing Machinery and Intelligence. Jones and Bergen (2025), Large Language Models Pass the Turing Test. Park et al. (2024), Generative Agent Simulations of 1,000 People.</div>
   <div><b>Links.</b> {URL.replace("https://","").rstrip("/")} (page, live test, report). Code and data: private repository shared with instructors.</div>
 </footer>
 </div>

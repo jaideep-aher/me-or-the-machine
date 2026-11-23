@@ -24,8 +24,8 @@ code{font-size:9pt;background:var(--soft);padding:0 3pt;border-radius:2pt}
 </style>
 </head>
 <body>
-<h1>Me or the Machine</h1>
-<div class="meta">Can the people closest to me tell one sentence I said from one an AI wrote in my voice?<br>Jaideep Aher · AIPI 590 Responsible AI · Duke University · Fall 2026 · Final project report</div>
+<h1>I've been recorded 24/7 for 7 weeks. Now an AI can be me.</h1>
+<div class="meta">Me or the Machine: can the people closest to me tell one sentence I said from one an AI wrote in my voice?<br>Jaideep Aher · AIPI 590 Responsible AI · Duke University · Fall 2026 · Final project report</div>
 
 <div class="abstract"><b>Abstract.</b> AI assistants and always-on voice wearables now hold enough of a person's speech to imitate them. My own Bee pendant has recorded and transcribed nearly everything I have said since 2 October 2026, about seven weeks. I ran a blind discrimination test on lines from it: ten people who know me (a partner and nine friends) judged 250 single lines, half taken from my own wearable recordings and half written by a language model told to sound like me. On the 160 judgments with saved answers they were right 78 times (48.8%, 95% Wilson interval 41.1% to 56.4%, exact binomial p = 0.81); averaged per judge, 49% (judge-level bootstrap 43% to 56%). Adding three friends' reported 30-line scores gives 111 of 250 (44.4%). Twin lines were judged "really him" as often as my real ones (47 and 45 of 80; sensitivity d′ = −0.06). Judges leaned towards trust (58% "really him"), which favours an impostor, and four judges who saw the same 20 lines agreed unanimously on just one line, a twin line they all believed. For short text, "my friends would know it wasn't me" did not hold in this pilot.</div>
 
@@ -109,22 +109,30 @@ code{font-size:9pt;background:var(--soft);padding:0 3pt;border-radius:2pt}
 <li>Judges knew AI lines were present, which may have made them more suspicious than a real target.</li>
 </ul>
 
-<h2>6. Responsible AI considerations</h2>
+<h2>6. What an AI recorder holds, and why leaks matter</h2>
+<p>While choosing lines for this study, I found the pendant's AI summaries had picked up details of my finances and private health information. I had never thought of those conversations as being recorded. It scared me.</p>
+<p>After seven weeks my pendant holds every conversation word for word, an AI summary of each day, where I was, other people's words recorded without their consent, and talk about health, money and relationships. This study shows one use of such a record: a convincing text twin from just 48 lines. A leak would enable more: blackmail, answers to account security questions, physical location, and exposure of everyone I talk to.</p>
+<p>Leaks of intimate data keep happening. In 2023 Amazon, which now owns Bee, paid a $25 million FTC penalty for keeping children's Alexa voice recordings after parents asked for deletion, and in a separate case the FTC said Ring employees could view customers' private videos (Amazon denied wrongdoing). In 2023 attackers took data on 6.9 million 23andMe users, including genetic and health reports, undetected for about five months. In January 2025 researchers found a DeepSeek database exposing users' chat logs with no password.</p>
+<p><b>Advice to anyone considering a pendant:</b> assume the data will leak one day; mute it for private conversations and tell people when it is on; delete transcripts regularly and prefer on-device processing; use a strong unique password with two-factor login and few connected apps; and agree a family check question instead of trusting a text.</p>
+
+<h2>7. Responsible AI considerations</h2>
 <ul>
 <li><b>Dual use.</b> The repository ships no automated twin, no prompts tuned for impersonation, and only benign one-liners.</li>
 <li><b>Bystander consent.</b> Wearables record other people who never agreed. None of their speech was used.</li>
 <li><b>Recommendations.</b> Wearable makers: minimise retention and keep transcripts on device. Platforms: label AI-written messages. Individuals: agree a family verification question; treat urgent money requests by text as unverified.</li>
 </ul>
 
-<h2>7. Future work</h2>
+<h2>8. Next steps</h2>
 <ol>
-<li>A control twin with no personal data, to measure what the data adds.</li>
-<li>One fixed set judged by twenty people, with a reason for each answer.</li>
-<li>Multi-turn chats, to find where shared history starts to protect people.</li>
-<li>Test the verification-question defence directly.</li>
+<li><b>Control twin with no personal data.</b> If it passes as often, one-line impersonation needs no data at all.</li>
+<li><b>Twin fed all seven weeks of recordings.</b> Measures how much the pendant record itself adds to the risk.</li>
+<li><b>Multi-turn conversations and a cloned voice,</b> where shared memories should help friends.</li>
+<li><b>Learning with feedback.</b> The live test now reveals each answer; those rounds (set DF) show whether accuracy rises over 20 lines.</li>
+<li><b>Test the defence:</b> whether a family check question stops a twin that has read weeks of my life.</li>
+<li><b>Audit AI recorders:</b> what each stores, for how long and who can access it, published as a plain checklist.</li>
 </ol>
 
-<h2>8. Artifacts</h2>
+<h2>9. Artifacts</h2>
 <p>Project page and live 20-line test: jaideep-aher.github.io/me-or-the-machine-site (test at /play/). Code, data, analysis, poster and this report: github.com/jaideep-aher/me-or-the-machine (private, shared with instructors).</p>
 
 <h2>References</h2>
@@ -134,6 +142,9 @@ code{font-size:9pt;background:var(--soft);padding:0 3pt;border-radius:2pt}
 <li>Park, J. S. et al. (2024). Generative Agent Simulations of 1,000 People. arXiv:2411.10109.</li>
 <li>FBI Internet Crime Complaint Center (2026). 2025 Internet Crime Report (AI-related losses, as reported by Malwarebytes, June 2026).</li>
 <li>Federal Trade Commission (2023). Scammers use AI to enhance their family emergency schemes. Consumer alert.</li>
+<li>FTC and DOJ (2023). Amazon Alexa (COPPA) and Ring settlements, reported by PBS NewsHour, 31 May 2023.</li>
+<li>TechCrunch (2024). 23andMe admits it didn't detect cyberattacks for months, 25 January 2024.</li>
+<li>Wiz Research (2025). Wiz Research uncovers exposed DeepSeek database leaking sensitive information, including chat history.</li>
 <li>Plaud (2025). Company-reported unit sales; 36Kr (2025) on Plaud passing 1 million units.</li>
 </ol>
 </body>

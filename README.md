@@ -1,6 +1,6 @@
 # Me or the Machine
 
-**My girlfriend vs. an AI: who knows me better?**
+**I've been recorded 24/7 for 7 weeks. Now an AI can be me.**
 
 A Bee pendant has recorded nearly everything I have said, around the clock, since 2 October 2026: about seven weeks of my life. An AI read 48 lines from it and wrote 47 more in my voice. Then I asked ten people who know me to tell them apart. My girlfriend scored 50% on her third try. So would a coin.
 
@@ -140,12 +140,29 @@ The public test posts each finished round to a Supabase table (`me_or_machine_re
 
 A convincing twin is an impersonation tool. This repository ships no automated twin, sends no messages, and holds only benign one-liners. The people most exposed are friends and family of anyone whose assistant holds their data; the result suggests that "I would know if it wasn't them" is not a safe assumption for short messages.
 
-## Future work
+## What an AI recorder holds, and why I worry about it
 
-1. A control twin with no data about me, to measure what personal data adds.
-2. One fixed set judged by twenty people, with a reason for each answer.
-3. Multi-turn exchanges, where shared history should help the judge.
-4. A defence: a shared phrase or question that a twin without lived memory fails.
+While choosing lines for this study, I found the pendant's AI summaries had picked up details of my finances and private health information. I had never thought of those conversations as being recorded. It scared me. After seven weeks my pendant holds every conversation word for word, an AI summary of each day, where I was, other people's words recorded without consent, and talk about health, money and relationships. This study shows one use of that record: a twin that fools my friends from just 48 lines. A leak would also allow blackmail, guessing account security answers, finding me, and exposing everyone I talk to. Leaks of intimate data keep happening: Amazon (Bee's owner) and Alexa voice recordings in 2023, 23andMe's 6.9 million users in 2023, DeepSeek's open chat-log database in 2025. If you wear one: assume it leaks one day, mute it for private talk, delete transcripts often, use two-factor login, and agree a family check question.
+
+## Next steps
+
+```mermaid
+flowchart LR
+    A[Control twin: no personal data] --> C{Does my data matter?}
+    B[Twin fed all 7 weeks] --> C
+    C --> D[Multi-turn chats and cloned voice]
+    D --> E[Test a family check question as a defence]
+    F[Instant-feedback rounds: can people learn?] --> E
+    E --> G[Audit what AI recorders store and who can see it]
+```
+Why this picture: the next experiments in the order they answer the open question, from "does personal data matter" to "what actually protects people".
+
+1. A control twin that knows nothing about me, to measure what personal data adds.
+2. A twin fed all seven weeks of recordings, to measure what the pendant record itself adds.
+3. Multi-turn conversations and a cloned voice, where shared history should help the judge.
+4. Feedback rounds (set DF on the live test) to see whether people learn to spot the twin.
+5. Test a family check question as a defence.
+6. Audit what each AI recorder stores, for how long, and who can access it.
 
 ## Related work
 
