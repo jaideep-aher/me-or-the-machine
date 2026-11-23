@@ -170,6 +170,7 @@ ul{{margin:0;padding-left:30px}} li{{margin-bottom:10px}}
 .pts p{{margin:0;font-size:21px;color:{MUTED}}}
 .foot{{display:grid;grid-template-columns:1fr 1.2fr .8fr;gap:44px;border-top:5px solid {INK};padding-top:26px;font-size:20px;color:{MUTED};line-height:1.35}}
 .foot b{{color:{INK}}}
+.jshot{{margin:14px 0 0}} .jshot img{{display:block;width:100%;border:2px solid {LINE};border-radius:10px}} .jshot figcaption{{font-size:21px;line-height:1.3;color:{MUTED};margin-top:8px}} .jshot b{{color:{INK}}}
 .scare{{border:2px solid {TWIN};background:{TWIN_S};border-radius:10px;padding:14px 18px;font-family:"Bricolage Grotesque";font-weight:500;font-size:25px;line-height:1.3}}
 .holds{{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:8px}}
 .holds .hh{{grid-column:1/3;font-size:28px;margin-bottom:4px}}
@@ -203,9 +204,7 @@ ul{{margin:0;padding-left:30px}} li{{margin-bottom:10px}}
 <section class="row r1">
   <div>
     <div class="scare">Its AI summaries had picked up my finances and private health information. I never thought of those talks as recorded. It scared me.</div>
-    <div class="holds" style="margin-top:14px"><h2 class="hh">After 7 weeks, my pendant holds</h2>
-      <div>Every conversation, word for word</div><div>An AI summary of every day</div><div>Where I was</div><div>Other people's words, without their consent</div>
-    </div>
+    <figure class="jshot"><img src="jarvis-memory-strip.jpg" alt=""><figcaption><b>Jarvis, the AI I built and gave my life to:</b> 7,273 things from 11 sources, including 3 Gmail accounts and the Bee pendant. It also tracks my location, every app I open and my patterns.</figcaption></figure>
     <div>
       <h2 style="margin-top:34px">How the test worked</h2>
       <p style="font-size:24px">I took <b style="color:{ACC}">48 real lines</b> from the pendant, after removing anything private. A language model read them and wrote <b style="color:{TWIN}">47 twin lines</b>. Ten people who know me judged one shuffled line at a time: "really him" or "AI twin". All knew some were fake.</p>
