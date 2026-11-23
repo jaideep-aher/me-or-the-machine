@@ -77,7 +77,7 @@ Why this picture: lines feed the two tests, judgments feed one script, and every
 | `app/me-or-machine.html` | The test as published privately on claude.ai (sets A to C) | Single HTML page using the artifact's own data store |
 | `public-test/index.html` | The public 20-line test friends open on their phones (set D) | Static page that inserts into an insert-only Supabase table |
 | `site/index.html` | The project web page (goal, threat, results) | Static HTML, served by GitHub Pages from a separate public repo |
-| `poster/` | `poster.html` source, `poster_24x24.pdf`, `preview.png` | HTML printed to PDF with headless Chrome |
+| `poster/` | `build_poster.py` (draws every chart from the data), `poster.html`, `poster_24x24.pdf`, `preview.png` | `python3 poster/build_poster.py`, then headless Chrome prints the PDF |
 | `report/` | `report.html` source and `report.pdf` | HTML printed to PDF with headless Chrome |
 | `samples/pilot10.json` | The first 10 topic-matched pairs (abandoned format) | Kept to show the design change |
 | `DESIGN.md` | Colours and type shared by the page, test, poster and report | |
@@ -95,6 +95,10 @@ python3 analysis/analyze.py
 
 ```bash
 open site/index.html
+```
+
+```bash
+python3 poster/build_poster.py
 ```
 
 ```bash

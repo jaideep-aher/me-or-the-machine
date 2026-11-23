@@ -1,0 +1,266 @@
+"""Build poster/poster.html (24 x 24 in) with every chart drawn from the data.
+
+Reads data/results.json, data/lines.json, analysis/summary.json, analysis/rigor.json.
+Run:  python3 poster/build_poster.py
+Then print to PDF with headless Chrome (see README).
+"""
+import json, pathlib, html
+
+R = pathlib.Path(__file__).resolve().parent.parent
+S = json.loads((R / "analysis/summary.json").read_text())
+G = json.loads((R / "analysis/rigor.json").read_text())
+RES = json.loads((R / "data/results.json").read_text())
+LINES = {l["id"]: l for l in json.loads((R / "data/lines.json").read_text())["lines"]}
+URL = "https://jaideep-aher.github.io/me-or-the-machine-site/"
+
+INK, MUTED, LINE, ACC, TWIN, TRACK = "#131A24", "#4D5968", "#C3CCD6", "#1F4FD8", "#B34E14", "#D9E0E8"
+ACC_S, TWIN_S = "#DCE4FA", "#F6E1D3"
+k, n = S["correct"], S["judgments"]
+pct = lambda a, b: round(100 * a / b)
+
+
+def waffle():
+    cols, s, g = 16, 30, 7
+    rows = -(-n // cols)
+    out = [f'<svg viewBox="0 0 {cols*(s+g)} {rows*(s+g)}" width="100%">']
+    for i in range(n):
+        c, r = i % cols, i // cols
+        out.append(f'<rect x="{c*(s+g)}" y="{r*(s+g)}" width="{s}" height="{s}" rx="4" fill="{"#FFFFFF" if i < k else "#3A4553"}"/>')
+    half = n // 2
+    hx, hy = (half % cols) * (s + g) - g / 2, (half // cols) * (s + g)
+    out.append(f'<path d="M{hx} {hy-4} V{hy+s+g}" stroke="#F0A067" stroke-width="5"/>')
+    out.append("</svg>")
+    return "".join(out)
+
+
+def bars():
+    real, twin = S["real_counts"], S["twin_counts"]
+    W = 560
+    out = [f'<svg viewBox="0 0 720 250" width="100%">']
+    for i, (lab, (a, b), col) in enumerate([("My real lines called “him”", real, ACC), ("Twin lines called “him”", twin, TWIN)]):
+        y = 40 + i * 115
+        out.append(f'<text x="0" y="{y}" font-size="30" fill="{INK}">{lab}: {a} of {b}</text>')
+        out.append(f'<rect x="0" y="{y+16}" width="{W}" height="54" rx="6" fill="{TRACK}"/>')
+        out.append(f'<rect x="0" y="{y+16}" width="{W*a/b:.0f}" height="54" rx="6" fill="{col}"/>')
+        out.append(f'<text x="{W+24}" y="{y+60}" font-size="54" font-weight="700" font-family="Bricolage Grotesque" fill="{INK}">{pct(a,b)}%</text>')
+    out.append(f'<line x1="{W/2}" x2="{W/2}" y1="44" y2="236" stroke="{INK}" stroke-width="3" stroke-dasharray="8 8"/>')
+    out.append(f'<text x="{W/2+10}" y="246" font-size="24" fill="{MUTED}">50%</text></svg>')
+    return "".join(out)
+
+
+def judges():
+    rows = []
+    for r in RES:
+        if r.get("score_only"):
+            a, b = r["correct"], r["n"]
+        else:
+            b = len(r["answers"]); a = sum(x["real"] == x["guessedReal"] for x in r["answers"])
+        rows.append((r["participant"] + (" partner" if r["relationship"] == "partner" else ""), a, b, bool(r.get("score_only"))))
+    W, L, Rm, rh = 760, 150, 70, 33
+    H = len(rows) * rh + 60
+    X = lambda p: L + (W - L - Rm) * p
+    out = [f'<svg viewBox="0 0 {W} {H}" width="100%">']
+    for t in (0, .25, .5, .75, 1):
+        out.append(f'<line x1="{X(t)}" x2="{X(t)}" y1="6" y2="{H-44}" stroke="{INK if t==.5 else LINE}" stroke-width="{3 if t==.5 else 1.5}" {"stroke-dasharray=\"8 8\"" if t==.5 else ""}/>')
+        out.append(f'<text x="{X(t)}" y="{H-12}" text-anchor="middle" font-size="24" fill="{MUTED}">{int(t*100)}%</text>')
+    for i, (lab, a, b, so) in enumerate(rows):
+        y, p = 28 + i * rh, a / b
+        col = ACC if p > .5 else (TWIN if p < .5 else INK)
+        out.append(f'<text x="0" y="{y+9}" font-size="26" fill="{INK}">{lab}</text>')
+        out.append(f'<line x1="{X(.5)}" x2="{X(p)}" y1="{y}" y2="{y}" stroke="{LINE}" stroke-width="4"/>')
+        out.append(f'<circle cx="{X(p)}" cy="{y}" r="13" fill="{"none" if so else col}" stroke="{col}" stroke-width="4"/>')
+        out.append(f'<text x="{X(p)+(24 if p>=.5 else -24)}" y="{y+9}" text-anchor="{"start" if p>=.5 else "end"}" font-size="24" fill="{MUTED}">{a}/{b}</text>')
+    out.append("</svg>")
+    return "".join(out)
+
+
+def grid():
+    d = [r for r in RES if r.get("set") == "D"]
+    votes = {}
+    for r in d:
+        for a in r["answers"]:
+            votes.setdefault(a["line"], [a["real"], []])[1].append(a["guessedReal"])
+    items = sorted(votes.items(), key=lambda x: (not x[1][0], x[0]))
+    cw, ch, top, left = 50, 40, 44, 70
+    W = left + len(items) * cw
+    out = [f'<svg viewBox="0 0 {W} {top+len(d)*ch+8}" width="100%">']
+    for ci, (line, (real, v)) in enumerate(items):
+        x = left + ci * cw
+        out.append(f'<rect x="{x+3}" y="4" width="{cw-6}" height="28" rx="5" fill="{ACC_S if real else TWIN_S}" stroke="{ACC if real else TWIN}" stroke-width="2"/>')
+        out.append(f'<text x="{x+cw/2}" y="25" text-anchor="middle" font-size="18" font-weight="600" fill="{ACC if real else TWIN}">{"me" if real else "AI"}</text>')
+        for ri, g in enumerate(v):
+            out.append(f'<rect x="{x+3}" y="{top+ri*ch}" width="{cw-6}" height="{ch-6}" rx="5" fill="{ACC if g else TWIN}"/>')
+        if len(set(v)) == 1:
+            out.append(f'<rect x="{x-1}" y="{top-6}" width="{cw+2}" height="{len(v)*ch+6}" rx="7" fill="none" stroke="{INK}" stroke-width="4"/>')
+    for ri in range(len(d)):
+        out.append(f'<text x="0" y="{top+ri*ch+25}" font-size="22" fill="{MUTED}">F{ri+1}</text>')
+    out.append("</svg>")
+    return "".join(out)
+
+
+ICONS = {
+    "mic": '<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4"/>',
+    "leak": '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/>',
+    "chip": '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/>',
+    "msg": '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/>',
+}
+icon = lambda name, col=INK: f'<svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="{col}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">{ICONS[name]}</svg>'
+
+pw, pm = G["power"]["min_detectable_accuracy_80pct_power"], G["equivalence_tost"]["p"]
+bf, kap, mb = G["bayes_factor_01"], G["fleiss_kappa_set_d"]["kappa"], G["machine_baseline"]
+lo, hi = S["accuracy_ci95"]
+jl = S["judge_level_saved"]
+d = S["set_d"]
+biryani = html.escape(LINES[62]["text"])
+
+page = f"""<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Me or the Machine poster</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* Generated by poster/build_poster.py. 24 x 24 in at 96 px per inch. Tokens match DESIGN.md. */
+@page {{ size: 24in 24in; margin: 0 }}
+*{{box-sizing:border-box}}
+html,body{{margin:0;width:2304px;height:2304px;background:#EEF1F4;color:{INK};font-family:"Instrument Sans","Helvetica Neue",sans-serif;font-size:27px;line-height:1.38;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+.page{{width:2304px;height:2304px;padding:76px 96px 64px;display:grid;grid-template-rows:auto auto 1fr auto;gap:36px}}
+h1,h2,h3{{font-family:"Bricolage Grotesque",sans-serif;margin:0}}
+h1{{font-weight:800;font-size:138px;line-height:.86;letter-spacing:-.035em}}
+h2{{font-weight:700;font-size:46px;line-height:1.05;margin-bottom:16px;letter-spacing:-.01em}}
+h3{{font-weight:700;font-size:30px;line-height:1.15;margin-bottom:4px}}
+p{{margin:0 0 12px}}
+.muted{{color:{MUTED}}}
+.head{{display:grid;grid-template-columns:1fr 700px 200px;gap:48px;align-items:end;padding-bottom:30px;border-bottom:5px solid {INK}}}
+.q{{font-family:"Bricolage Grotesque",sans-serif;font-weight:500;font-size:40px;line-height:1.15}}
+.by{{font-size:24px;color:{MUTED};margin-top:16px}}
+.qr{{text-align:center;font-size:20px;color:{MUTED}}}
+.qr #qr{{background:#fff;padding:12px;border-radius:8px;border:2px solid {INK};margin-bottom:8px}}
+.row{{display:grid;gap:56px;min-height:0}}
+.r1{{grid-template-columns:600px 1fr 560px}}
+.r2{{grid-template-columns:1fr 1fr 1fr;align-items:start}}
+.card{{background:#fff;border:2px solid {LINE};border-radius:10px;padding:28px}}
+.hero{{background:{INK};color:#fff;border-radius:10px;padding:34px 40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}}
+.hero .big{{font-family:"Bricolage Grotesque";font-weight:800;font-size:230px;line-height:.8;letter-spacing:-.05em}}
+.hero .cap{{font-size:34px;line-height:1.25;margin:18px 0 10px}}
+.hero .sub{{font-size:22px;color:#B9C4D2}}
+.chain{{display:grid;gap:0}}
+.chain>div{{display:grid;grid-template-columns:70px 1fr;gap:14px;padding:16px 0;border-top:3px solid {INK}}}
+.chain>div:last-child{{border-top-color:{TWIN}}}
+.chain p{{margin:0;font-size:24px;color:{MUTED}}}
+.figs{{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}}
+.figs b{{display:block;font-family:"Bricolage Grotesque";font-weight:800;font-size:50px;line-height:1}}
+.figs span{{font-size:19px;color:{MUTED};line-height:1.3;display:block;margin-top:6px}}
+.phone{{background:#fff;border:2px solid {LINE};border-radius:40px;padding:28px 26px}}
+.who{{display:flex;gap:14px;align-items:center;padding-bottom:18px;border-bottom:2px solid {LINE};margin-bottom:22px}}
+.av{{width:54px;height:54px;border-radius:50%;background:{ACC};color:#fff;display:grid;place-items:center;font:700 26px "Bricolage Grotesque"}}
+.bub{{background:#E2E7ED;border-radius:26px 26px 26px 8px;padding:18px 22px;font-size:30px;line-height:1.35;margin-bottom:20px}}
+.vote{{display:flex;justify-content:space-between;font-size:24px;color:{MUTED};padding:14px 4px;border-top:2px dashed {LINE}}}
+.vote b{{color:{ACC}}}
+.ans{{background:{TWIN_S};border-radius:16px;padding:18px 22px;font-size:26px;line-height:1.35}}
+.ans b{{color:{TWIN}}}
+.legend{{display:flex;flex-wrap:wrap;gap:6px 24px;font-size:21px;color:{MUTED};margin-top:12px}}
+.legend i{{display:inline-block;width:20px;height:20px;border-radius:4px;margin-right:8px;vertical-align:-3px}}
+.rig{{width:100%;border-collapse:collapse;font-size:25px}}
+.rig td{{padding:13px 8px;border-top:2px solid {LINE};vertical-align:top}}
+.rig tr:first-child td{{border-top:0}}
+.rig td:first-child{{color:{MUTED};width:44%}}
+ul{{margin:0;padding-left:30px}} li{{margin-bottom:10px}}
+.pts div{{padding:10px 0;border-top:2px solid {LINE}}} .pts div:first-child{{border-top:0;padding-top:0}}
+.pts p{{margin:0;font-size:22px;color:{MUTED}}}
+.foot{{display:grid;grid-template-columns:1fr 1.2fr .8fr;gap:48px;border-top:5px solid {INK};padding-top:26px;font-size:20px;color:{MUTED};line-height:1.35}}
+.foot b{{color:{INK}}}
+</style></head><body><div class="page">
+
+<header class="head">
+  <div><h1>Me or the Machine</h1></div>
+  <div><div class="q">If an AI writes one sentence in my voice, can the people closest to me tell it is not me?</div>
+  <div class="by">Jaideep Aher, Duke University, AIPI 590 Responsible AI, fall 2026</div></div>
+  <div class="qr"><div id="qr"></div>Take the test, see the charts</div>
+</header>
+
+<section class="row r1">
+  <div>
+    <h2>The problem</h2>
+    <div class="chain">
+      <div>{icon("mic")}<div><h3>My speech is recorded</h3><p>A wearable turns every conversation into text.</p></div></div>
+      <div>{icon("leak")}<div><h3>The transcripts leak</h3><p>A breach, an export or a malicious app copies them.</p></div></div>
+      <div>{icon("chip")}<div><h3>An AI learns my voice</h3><p>A language model writes new lines that sound like me.</p></div></div>
+      <div>{icon("msg", TWIN)}<div><h3>A friend gets a text</h3><p>"Lost my card, can you send me 200?" Do they notice?</p></div></div>
+    </div>
+    <div class="figs">
+      <div><b>2M+</b><span>Plaud recorders sold (company figure); Amazon bought Bee, Meta bought Limitless, 2025</span></div>
+      <div><b>$893M</b><span>US losses to AI-enabled scams, FBI 2025</span></div>
+      <div><b>22,000+</b><span>AI-related scam complaints to the FBI, 2025</span></div>
+    </div>
+    <div>
+      <h2 style="margin-top:34px">How the test worked</h2>
+      <p style="font-size:24px">I took <b style="color:{ACC}">48 real lines</b> from my own wearable, after removing anything private. A language model read them and wrote <b style="color:{TWIN}">47 twin lines</b>. Ten people who know me saw one shuffled line at a time and chose "really him" or "AI twin", with no answers until the end. Everyone knew some lines were fake.</p>
+    </div>
+
+  </div>
+
+  <div style="display:grid;gap:28px;align-content:start">
+    <div class="hero">
+      <div><div class="big">{pct(k,n)}%</div><div class="cap">of {n} saved judgments were right. A coin flip.</div>
+      <div class="sub">{k} of {n}, 95% interval {lo*100:.0f}% to {hi*100:.0f}%, p = {S["p_vs_chance"]:.2f}. Per judge: mean {jl["mean_accuracy"]*100:.0f}%. With three reported 30-line scores: {S["all_correct"]} of {S["all_judgments"]} ({S["all_accuracy"]*100:.0f}%).</div></div>
+      <div>{waffle()}<div class="legend" style="color:#B9C4D2"><span><i style="background:#fff"></i>Right ({k})</span><span><i style="background:#3A4553"></i>Wrong ({n-k})</span><span><i style="background:#F0A067;width:6px"></i>50% mark</span></div></div>
+    </div>
+    <div>    <h2>Evidence of no skill, not too little data</h2>
+    <div class="card"><table class="rig">
+      <tr><td>Could this sample catch real skill?</td><td><b>Yes.</b> A true accuracy of {pw*100:.0f}% would show 80% of the time.</td></tr>
+      <tr><td>Accuracy within 50% ± 10?</td><td><b>Yes.</b> Equivalence test p = {pm:.3f}.</td></tr>
+      <tr><td>Guessing or some ability?</td><td><b>Guessing</b>, about {bf:.0f} times more likely (Bayes factor).</td></tr>
+      <tr><td>Can a style detector do better?</td><td><b>No.</b> {mb["accuracy"]*100:.0f}% on all 95 lines, p = {mb["permutation_p"]:.2f}.</td></tr>
+    </table></div>
+    </div>
+  </div>
+
+  <div>
+    <h2>One line, four friends</h2>
+    <div class="phone">
+      <div class="who"><div class="av">J</div><div><b style="font-size:28px">Jaideep</b><br><span class="muted" style="font-size:21px">one line, no context</span></div></div>
+      <div class="bub">{biryani}</div>
+      <div class="vote"><span>Four friends judged it</span><b>4 of 4: "it's him"</b></div>
+      <div class="ans"><b>The AI twin wrote it.</b> It was the only line all four agreed on, and they were all wrong.</div>
+    </div>
+    <h2 style="margin-top:30px">Friends didn't agree</h2>
+    <div class="card">{grid()}<div class="legend"><span><i style="background:{ACC}"></i>Said "him"</span><span><i style="background:{TWIN}"></i>Said "AI"</span><span>Columns: the 20 shared lines</span></div></div>
+    <p class="muted" style="margin-top:14px">Agreement was below chance (Fleiss' κ = {kap:.2f}). Majority vote: right on {d["majority_right"]}, wrong on {20-d["majority_right"]-d["majority_tied"]}, tied on {d["majority_tied"]}.</p>
+
+  </div>
+</section>
+
+<section class="row r2">
+  <div>
+    <h2>Twin lines passed as often</h2>
+    <div class="card">{bars()}</div>
+    <p class="muted" style="margin-top:14px">Sensitivity d′ = {S["signal_detection"]["d_prime"]:.2f}: zero means no ability to tell them apart. Friends said "him" {S["said_real_rate"]*100:.1f}% of the time, a lean towards trust that helps an impostor.</p>
+  </div>
+
+  <div>
+    <h2>Nobody was reliably good</h2>
+    <p class="muted" style="font-size:23px;margin-top:-6px">Each dot is one judge. Only one scored above 50% (14 of 20, not significant alone).</p>
+    <div class="card">{judges()}<div class="legend"><span><i style="background:{ACC};border-radius:50%"></i>Above 50%</span><span><i style="background:{TWIN};border-radius:50%"></i>Below</span><span><i style="border:3px solid {MUTED};border-radius:50%"></i>Reported score, not saved</span></div></div>
+  </div>
+
+  <div>
+    <h2>What it means</h2>
+    <div class="pts">
+      <div><h3>Short messages are the weak spot</h3><p>The cheapest attack is one short text, the exact format where people who know me failed.</p></div>
+      <div><h3>Trust works against us</h3><p>Friends default to "it's him". An impostor only needs to not sound wrong.</p></div>
+      <div><h3>Recorded speech is sensitive data</h3><p>Treat wearable transcripts like a password: on the device, kept briefly.</p></div>
+      <div><h3>Agree a check in advance</h3><p>A question only the real person can answer beats trying to spot style.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div><b>Limits.</b> Ten judges; three 30-line scores were reported, not saved. Twin lines were written with my real lines in view, the best case for the twin. <b>Next:</b> a control twin that knows nothing about me, and longer conversations.</div>
+  <div><b>Ethics.</b> Every judge knew some lines were AI-written; no message was ever sent as me; judges are anonymised. <b>Related work.</b> Turing (1950), Computing Machinery and Intelligence. Jones and Bergen (2025), Large Language Models Pass the Turing Test. Park et al. (2024), Generative Agent Simulations of 1,000 People.</div>
+  <div><b>Links.</b> {URL.replace("https://","").rstrip("/")} (page, live test, report). Code and data: private repository shared with instructors.</div>
+</footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>const q=qrcode(0,"M");q.addData("{URL}");q.make();document.getElementById("qr").innerHTML=q.createSvgTag({{scalable:true,margin:0}});</script>
+</body></html>
+"""
+(R / "poster/poster.html").write_text(page)
+print("wrote poster/poster.html")
