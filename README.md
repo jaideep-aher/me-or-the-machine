@@ -7,7 +7,7 @@ Course topics: red-teaming, AI harms, human-AI interaction, AI evaluation.
 
 ## Result so far (pilot)
 
-Four people who know me judged 100 single lines as "really him" or "AI twin". They were right 51 times: **51%, where a coin flip gets 50%** (95% interval 41% to 61%, exact binomial p = 0.92). My real lines were called "him" 60% of the time and the twin's lines 58% of the time.
+Five people who know me judged 120 single lines as "really him" or "AI twin". They were right 60 times: **50%, exactly a coin flip** (95% interval 41% to 59%, exact binomial p = 1.00). My real lines and the twin's lines were each called "him" 57% of the time (34 of 60).
 
 ```mermaid
 flowchart LR
@@ -68,7 +68,7 @@ The public test posts each finished round to a Supabase table (`me_or_machine_re
 
 ## Known limitations
 
-- Four judges and 100 judgments across four different line sets. This is a pilot.
+- Five judges and 120 judgments across four line sets. This is a pilot.
 - One judge was on a third attempt and had seen some lines before.
 - A single sentence carries little identity, so chance-level accuracy may reflect the format as much as the twin.
 - The twin lines were hand-prompted in a chat with the real lines in view. There is no control twin that knows nothing about me yet, so the study cannot say how much my personal data contributed.

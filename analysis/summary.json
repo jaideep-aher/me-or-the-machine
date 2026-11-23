@@ -1,24 +1,24 @@
 {
- "participants": 4,
- "judgments": 100,
- "correct": 51,
- "accuracy": 0.51,
+ "participants": 5,
+ "judgments": 120,
+ "correct": 60,
+ "accuracy": 0.5,
  "accuracy_ci95": [
-  0.4134784047743415,
-  0.6057816990761385
+  0.411937137430229,
+  0.588062862569771
  ],
- "p_vs_chance": 0.9204107626128213,
- "real_called_real": 0.6,
+ "p_vs_chance": 1.0,
+ "real_called_real": 0.5666666666666667,
  "real_counts": [
-  30,
-  50
+  34,
+  60
  ],
- "twin_called_real": 0.58,
+ "twin_called_real": 0.5666666666666667,
  "twin_counts": [
-  29,
-  50
+  34,
+  60
  ],
- "said_real_rate": 0.59,
+ "said_real_rate": 0.5666666666666667,
  "per_participant": [
   {
    "participant": "P1",
@@ -71,6 +71,19 @@
    "twin_lines": 10,
    "twin_passed": 6,
    "said_real": 12
+  },
+  {
+   "participant": "P5",
+   "relationship": "friend",
+   "set": "D",
+   "attempt": 1,
+   "n": 20,
+   "correct": 9,
+   "real_lines": 10,
+   "real_recognised": 4,
+   "twin_lines": 10,
+   "twin_passed": 5,
+   "said_real": 9
   }
  ]
 }
