@@ -1,6 +1,6 @@
 # DESIGN.md
 
-Direction: **Swiss editorial data sheet.** One column of plain statements, one dark block holding the single number that matters, evidence underneath.
+Direction: **Matches aher.dev (owner's portfolio and blog).** Light page, Inter, ink text, grey secondary text, hairline borders, blue only for links and one pill. Every chart sits on a dark rounded stage with outlined marks, like the blog figures. Changed 23 Nov 2026 at the owner's request: no AI-looking colours.
 
 ```mermaid
 flowchart LR
@@ -12,14 +12,15 @@ Why this picture: all three surfaces read the same tokens, so they look like one
 
 | Token | Light | Dark | Role |
 |---|---|---|---|
-| bg | #EEF1F4 | #0F141B | Page ground, a cool paper grey |
-| surface | #FFFFFF | #182029 | Cards and inputs |
-| ink | #131A24 | #E9EEF4 | Text and the result block |
-| muted | #4D5968 | #9AA7B6 | Captions |
-| accent | #1F4FD8 | #7FA2FF | Cobalt: actions and "really me" |
-| twin | #B34E14 | #F0A067 | Burnt orange: anything written by the AI |
+| bg | #FAFAFA | n/a | Page ground (light only, like aher.dev) |
+| surface | #FFFFFF | n/a | Cards |
+| ink | #0A0A0A | n/a | Text |
+| muted | #737373 | n/a | Secondary text |
+| link | #2563EB | n/a | Links and the course pill only |
+| me (chart) | #56C7E3 | on #0D1117 stage | Cyan: really me |
+| twin (chart) | #F2766B | on #0D1117 stage | Coral: the AI twin |
 
-- **Type:** Bricolage Grotesque (display, 500 and 700) with Instrument Sans (body), both from Google Fonts.
+- **Type:** Inter 400, 500, 600 (matches aher.dev). Headings are plain declarative sentences under a small uppercase label.
 - **Space and line:** 4 px scale, 6 px radius, hairline borders, no shadows.
 - **Colour rule:** cobalt always means me, orange always means the twin.
 - **Icons and imagery:** none; the numbers and the quoted lines are the imagery.
