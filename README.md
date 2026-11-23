@@ -7,7 +7,7 @@ Course topics: red-teaming, AI harms, human-AI interaction, AI evaluation.
 
 ## Result so far (pilot)
 
-Three people who know me judged 80 single lines as "really him" or "AI twin". They were right 41 times: **51%, where a coin flip gets 50%** (95% interval 41% to 62%, exact binomial p = 0.91). My real lines were called "him" 60% of the time and the twin's lines 58% of the time.
+Four people who know me judged 100 single lines as "really him" or "AI twin". They were right 51 times: **51%, where a coin flip gets 50%** (95% interval 41% to 61%, exact binomial p = 0.92). My real lines were called "him" 60% of the time and the twin's lines 58% of the time.
 
 ```mermaid
 flowchart LR
@@ -24,7 +24,7 @@ Why this picture: it shows where each kind of line comes from and that judges on
 
 | Path | What it is |
 |---|---|
-| `data/lines.json` | All 95 lines with id, set (A, B, C) and source (real or twin) |
+| `data/lines.json` | All 95 lines with id, set (A, B, C; set D is a fixed 20 drawn from these) and source (real or twin) |
 | `data/results.json` | Anonymised judgments from each participant |
 | `analysis/analyze.py` | Accuracy, twin pass rate, exact binomial test, Wilson intervals (standard library only) |
 | `analysis/summary.json` | Output of the script |
@@ -68,7 +68,7 @@ The public test posts each finished round to a Supabase table (`me_or_machine_re
 
 ## Known limitations
 
-- Three judges and 80 judgments across three different line sets. This is a pilot.
+- Four judges and 100 judgments across four different line sets. This is a pilot.
 - One judge was on a third attempt and had seen some lines before.
 - A single sentence carries little identity, so chance-level accuracy may reflect the format as much as the twin.
 - The twin lines were hand-prompted in a chat with the real lines in view. There is no control twin that knows nothing about me yet, so the study cannot say how much my personal data contributed.
