@@ -140,6 +140,10 @@ The public test posts each finished round to a Supabase table (`me_or_machine_re
 
 A convincing twin is an impersonation tool. This repository ships no automated twin, sends no messages, and holds only benign one-liners. The people most exposed are friends and family of anyone whose assistant holds their data; the result suggests that "I would know if it wasn't them" is not a safe assumption for short messages.
 
+## Context: Jarvis, the assistant I built
+
+Alongside the pendant I built Jarvis, a personal AI coach that reads my Canvas deadlines, texts and then calls me with a voice agent, uses Claude agents to judge what I promise, and senses my location, app use and wake time from my phone. Its roadmap includes a "twin" stage built on the Bee pendant's live stream. This project tests the risky half of that idea first. The site shows the Bee app's own inferred "facts" about me and a Jarvis screen-time view (test data).
+
 ## What an AI recorder holds, and why I worry about it
 
 While choosing lines for this study, I found the pendant's AI summaries had picked up details of my finances and private health information. I had never thought of those conversations as being recorded. It scared me. After seven weeks my pendant holds every conversation word for word, an AI summary of each day, where I was, other people's words recorded without consent, and talk about health, money and relationships. This study shows one use of that record: a twin that fools my friends from just 48 lines. A leak would also allow blackmail, guessing account security answers, finding me, and exposing everyone I talk to. Leaks of intimate data keep happening: Amazon (Bee's owner) and Alexa voice recordings in 2023, 23andMe's 6.9 million users in 2023, DeepSeek's open chat-log database in 2025. If you wear one: assume it leaks one day, mute it for private talk, delete transcripts often, use two-factor login, and agree a family check question.
