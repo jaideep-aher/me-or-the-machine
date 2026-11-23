@@ -55,8 +55,8 @@ def judges():
             a, b = r["correct"], r["n"]
         else:
             b = len(r["answers"]); a = sum(x["real"] == x["guessedReal"] for x in r["answers"])
-        rows.append((r["participant"] + (" partner" if r["relationship"] == "partner" else ""), a, b, bool(r.get("score_only"))))
-    W, L, Rm, rh = 760, 150, 70, 33
+        rows.append((r["participant"] + (" girlfriend" if r["relationship"] == "partner" else ""), a, b, bool(r.get("score_only"))))
+    W, L, Rm, rh = 760, 170, 70, 31
     H = len(rows) * rh + 60
     X = lambda p: L + (W - L - Rm) * p
     out = [f'<svg viewBox="0 0 {W} {H}" width="100%">']
@@ -121,15 +121,18 @@ page = f"""<!doctype html>
 @page {{ size: 24in 24in; margin: 0 }}
 *{{box-sizing:border-box}}
 html,body{{margin:0;width:2304px;height:2304px;background:#EEF1F4;color:{INK};font-family:"Instrument Sans","Helvetica Neue",sans-serif;font-size:27px;line-height:1.38;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
-.page{{width:2304px;height:2304px;padding:76px 96px 64px;display:grid;grid-template-rows:auto auto 1fr auto;gap:36px}}
+.page{{width:2304px;height:2304px;padding:76px 96px 64px;display:grid;grid-template-rows:auto auto 1fr auto;gap:30px}}
 h1,h2,h3{{font-family:"Bricolage Grotesque",sans-serif;margin:0}}
-h1{{font-weight:800;font-size:138px;line-height:.86;letter-spacing:-.035em}}
+h1{{font-weight:800;font-size:104px;line-height:.92;letter-spacing:-.03em}}
+.kick{{font-family:"Bricolage Grotesque";font-weight:700;font-size:34px;color:{ACC};margin-bottom:10px}}
+.pend{{display:grid;grid-template-columns:54px 1fr;gap:16px;background:#fff;border:2px solid {LINE};border-radius:14px;padding:18px 20px;font-size:23px;color:{MUTED};line-height:1.3}}
+.pend b{{display:block;font-family:"Bricolage Grotesque";font-size:30px;color:{INK};line-height:1.15;margin-bottom:4px}}
 h2{{font-weight:700;font-size:46px;line-height:1.05;margin-bottom:16px;letter-spacing:-.01em}}
 h3{{font-weight:700;font-size:30px;line-height:1.15;margin-bottom:4px}}
 p{{margin:0 0 12px}}
 .muted{{color:{MUTED}}}
-.head{{display:grid;grid-template-columns:1fr 700px 200px;gap:48px;align-items:end;padding-bottom:30px;border-bottom:5px solid {INK}}}
-.q{{font-family:"Bricolage Grotesque",sans-serif;font-weight:500;font-size:40px;line-height:1.15}}
+.head{{display:grid;grid-template-columns:1fr 760px 200px;gap:44px;align-items:end;padding-bottom:24px;border-bottom:5px solid {INK}}}
+.q{{font-family:"Bricolage Grotesque",sans-serif;font-weight:500;font-size:32px;line-height:1.15}}
 .by{{font-size:24px;color:{MUTED};margin-top:16px}}
 .qr{{text-align:center;font-size:20px;color:{MUTED}}}
 .qr #qr{{background:#fff;padding:12px;border-radius:8px;border:2px solid {INK};margin-bottom:8px}}
@@ -152,7 +155,7 @@ p{{margin:0 0 12px}}
 .who{{display:flex;gap:14px;align-items:center;padding-bottom:18px;border-bottom:2px solid {LINE};margin-bottom:22px}}
 .av{{width:54px;height:54px;border-radius:50%;background:{ACC};color:#fff;display:grid;place-items:center;font:700 26px "Bricolage Grotesque"}}
 .bub{{background:#E2E7ED;border-radius:26px 26px 26px 8px;padding:18px 22px;font-size:30px;line-height:1.35;margin-bottom:20px}}
-.vote{{display:flex;justify-content:space-between;font-size:24px;color:{MUTED};padding:14px 4px;border-top:2px dashed {LINE}}}
+.vote{{display:flex;justify-content:space-between;font-size:24px;color:{MUTED};padding:14px 12px;border-top:2px dashed {LINE}}}
 .vote b{{color:{ACC}}}
 .ans{{background:{TWIN_S};border-radius:16px;padding:18px 22px;font-size:26px;line-height:1.35}}
 .ans b{{color:{TWIN}}}
@@ -163,16 +166,17 @@ p{{margin:0 0 12px}}
 .rig tr:first-child td{{border-top:0}}
 .rig td:first-child{{color:{MUTED};width:44%}}
 ul{{margin:0;padding-left:30px}} li{{margin-bottom:10px}}
-.pts div{{padding:10px 0;border-top:2px solid {LINE}}} .pts div:first-child{{border-top:0;padding-top:0}}
-.pts p{{margin:0;font-size:22px;color:{MUTED}}}
+.pts div{{padding:8px 0;border-top:2px solid {LINE}}} .pts div:first-child{{border-top:0;padding-top:0}}
+.pts p{{margin:0;font-size:21px;color:{MUTED}}}
 .foot{{display:grid;grid-template-columns:1fr 1.2fr .8fr;gap:48px;border-top:5px solid {INK};padding-top:26px;font-size:20px;color:{MUTED};line-height:1.35}}
 .foot b{{color:{INK}}}
 </style></head><body><div class="page">
 
 <header class="head">
-  <div><h1>Me or the Machine</h1></div>
-  <div><div class="q">If an AI writes one sentence in my voice, can the people closest to me tell it is not me?</div>
+  <div><div class="kick">Me or the Machine</div><h1>My girlfriend vs. an AI: who knows me better?</h1>
   <div class="by">Jaideep Aher, Duke University, AIPI 590 Responsible AI, fall 2026</div></div>
+  <div><div class="pend">{icon("mic", ACC)}<div><b>A pendant has heard me talk 24/7 for 7 weeks.</b>An AI needed just 48 of my lines from it to write 47 more in my voice.</div></div>
+  <div class="q" style="margin-top:18px">My girlfriend scored 50% at telling us apart, on her third try. So would a coin.</div></div>
   <div class="qr"><div id="qr"></div>Take the test, see the charts</div>
 </header>
 
@@ -192,7 +196,7 @@ ul{{margin:0;padding-left:30px}} li{{margin-bottom:10px}}
     </div>
     <div>
       <h2 style="margin-top:34px">How the test worked</h2>
-      <p style="font-size:24px">I took <b style="color:{ACC}">48 real lines</b> from my own wearable, after removing anything private. A language model read them and wrote <b style="color:{TWIN}">47 twin lines</b>. Ten people who know me saw one shuffled line at a time and chose "really him" or "AI twin", with no answers until the end. Everyone knew some lines were fake.</p>
+      <p style="font-size:24px">My pendant has recorded nearly everything I have said since 2 October. From it I took <b style="color:{ACC}">48 real lines</b>, after removing anything private. A language model read them and wrote <b style="color:{TWIN}">47 twin lines</b>. Ten people who know me saw one shuffled line at a time and chose "really him" or "AI twin", with no answers until the end. Everyone knew some lines were fake.</p>
     </div>
 
   </div>

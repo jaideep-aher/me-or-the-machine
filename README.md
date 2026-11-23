@@ -1,6 +1,8 @@
 # Me or the Machine
 
-**If an AI writes one sentence in my voice, can the people closest to me tell it is not me?**
+**My girlfriend vs. an AI: who knows me better?**
+
+A Bee pendant has recorded nearly everything I have said, around the clock, since 2 October 2026: about seven weeks of my life. An AI read 48 lines from it and wrote 47 more in my voice. Then I asked ten people who know me to tell them apart. My girlfriend scored 50% on her third try. So would a coin.
 
 Final project for AIPI 590 (Responsible AI), Duke University, Fall 2026. Author: Jaideep Aher.
 Course topics: red-teaming, AI harms, human-AI interaction, AI evaluation.
@@ -113,7 +115,7 @@ The public test posts each finished round to a Supabase table (`me_or_machine_re
 
 ## Data and API requirements
 
-- **Real lines** come from my own Bee wearable export, which is not in this repository. Only the 48 chosen lines are included. They are speech-to-text and keep its recognition errors.
+- **Real lines** come from my own Bee wearable, which has recorded and transcribed my conversations around the clock since 2 October 2026 (about seven weeks). The export is not in this repository. Only the 48 chosen lines are included. They are speech-to-text and keep its recognition errors.
 - **Twin lines** were written by a language model (Claude Opus) inside a chat session, after it had read the real lines. No API key is needed to reproduce the analysis. Regenerating twin lines with a script is future work.
 - **Judgments** are stored with participant labels P1, P2 and so on. Names stay out of the repository.
 
