@@ -5,6 +5,26 @@
 Final project for AIPI 590 (Responsible AI), Duke University, Fall 2026. Author: Jaideep Aher.
 Course topics: red-teaming, AI harms, human-AI interaction, AI evaluation.
 
+| Deliverable | Where |
+|---|---|
+| Report (submit this) | [`report/report.pdf`](report/report.pdf) |
+| Poster, 24 by 24 inch | [`poster/poster_24x24.pdf`](poster/poster_24x24.pdf) |
+| Project page | https://jaideep-aher.github.io/me-or-the-machine-site/ |
+| Live 20-line test | https://jaideep-aher.github.io/me-or-the-machine-site/play/ |
+
+## Goal and threat
+
+Recording pendants (Plaud reports 2M+ sold; Amazon bought Bee in July 2025, Meta bought Limitless in December 2025) hold months of how their owners talk. The FBI's 2025 Internet Crime Report counted 22,000+ AI-enabled scam complaints and about $893M in losses. The goal is to test whether the people closest to someone are a real safeguard when an AI built from that speech writes as them.
+
+```mermaid
+flowchart LR
+    W[Wearable transcripts] -->|leak or malicious app| L[Attacker copy]
+    L -->|prompt or fine-tune| T[LLM twin]
+    T -->|short text: can you send me...| F[Friend or family]
+    F -->|this study measures| D{Do they notice?}
+```
+Why this picture: the attack chain, and the one step this study tests.
+
 ## Result so far (pilot)
 
 Six people who know me judged 140 single lines as "really him" or "AI twin". They were right 70 times: **50%, exactly a coin flip** (95% interval 42% to 58%, exact binomial p = 1.00). My real lines and the twin's lines were each called "him" 59% of the time (41 of 70). Three judges saw the same 20 lines; their majority vote was right on 10.
@@ -22,18 +42,45 @@ Why this picture: it shows where each kind of line comes from and that judges on
 
 ## What is in this repository
 
-| Path | What it is |
-|---|---|
-| `data/lines.json` | All 95 lines with id, set (A, B, C; set D is a fixed 20 drawn from these) and source (real or twin) |
-| `data/results.json` | Anonymised judgments from each participant |
-| `analysis/analyze.py` | Accuracy, twin pass rate, exact binomial test, Wilson intervals (standard library only) |
-| `analysis/summary.json` | Output of the script |
-| `app/me-or-machine.html` | The test as published privately on claude.ai (saves to the page's own store) |
-| `public-test/index.html` | The public 20-line test friends open on their own phones (saves to a database) |
-| `site/index.html` | The project web page |
-| `poster/poster.html`, `poster/poster_24x24.pdf` | The 24 by 24 inch poster and its source |
-| `DESIGN.md` | Visual tokens shared by the page, the test and the poster |
-| `docs/decisions.md` | Dated design decisions and rejected options |
+```mermaid
+flowchart TB
+    subgraph Inputs
+      D1[data/lines.json<br/>95 lines, real or twin]
+      D2[data/results.json<br/>P1 to P6 judgments]
+    end
+    subgraph Tests
+      A1[app/me-or-machine.html<br/>sets A to C, claude.ai]
+      A2[public-test/index.html<br/>set D, Supabase]
+    end
+    subgraph Analysis
+      S1[analysis/analyze.py] --> S2[analysis/summary.json]
+    end
+    subgraph Outputs
+      O1[report/] 
+      O2[poster/]
+      O3[site/]
+    end
+    D1 --> A1 & A2
+    A1 & A2 -->|judgments, anonymised| D2
+    D2 --> S1
+    S2 --> O1 & O2 & O3
+```
+Why this picture: lines feed the two tests, judgments feed one script, and every number in the report, poster and page comes from its output.
+
+| Path | What it is | How it was made |
+|---|---|---|
+| `data/lines.json` | All 95 lines with id, set (A, B, C; set D is a fixed 20 drawn from these) and source | Real lines filtered by hand-written rules from my Bee export; twin lines written by Claude after reading them |
+| `data/results.json` | Anonymised judgments from each participant | Exported from the two tests, names replaced with P1 to P6 |
+| `analysis/analyze.py` | Accuracy, twin pass rate, exact binomial test, Wilson intervals | Python standard library only |
+| `analysis/summary.json` | Output of the script | `python3 analysis/analyze.py` |
+| `app/me-or-machine.html` | The test as published privately on claude.ai (sets A to C) | Single HTML page using the artifact's own data store |
+| `public-test/index.html` | The public 20-line test friends open on their phones (set D) | Static page that inserts into an insert-only Supabase table |
+| `site/index.html` | The project web page (goal, threat, results) | Static HTML, served by GitHub Pages from a separate public repo |
+| `poster/` | `poster.html` source, `poster_24x24.pdf`, `preview.png` | HTML printed to PDF with headless Chrome |
+| `report/` | `report.html` source and `report.pdf` | HTML printed to PDF with headless Chrome |
+| `samples/pilot10.json` | The first 10 topic-matched pairs (abandoned format) | Kept to show the design change |
+| `DESIGN.md` | Colours and type shared by the page, test, poster and report | |
+| `docs/decisions.md` | Dated design decisions, rejected options, database schema | |
 
 ## Run it
 
@@ -49,6 +96,10 @@ open site/index.html
 
 ```bash
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --no-pdf-header-footer --print-to-pdf=poster/poster_24x24.pdf "file://$PWD/poster/poster.html"
+```
+
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --no-pdf-header-footer --print-to-pdf=report/report.pdf "file://$PWD/report/report.html"
 ```
 
 The public test posts each finished round to a Supabase table (`me_or_machine_results`) that anyone may insert into and nobody may read without the owner's login. To use your own database, change the URL and publishable key near the top of the script in `public-test/index.html` and create the table from `docs/decisions.md`.
