@@ -7,7 +7,7 @@ judges=[]
 for r in res:
     if r.get("score_only"): k,n=r["correct"],r["n"]
     else: n=len(r["answers"]); k=sum(a["real"]==a["guessedReal"] for a in r["answers"])
-    lab=r["participant"]+(" partner" if r["relationship"]=="partner" else "")
+    lab=r["participant"]+(" girlfriend" if r["relationship"]=="partner" else "")
     judges.append(dict(label=lab,k=k,n=n))
 d=[r for r in res if r.get("set")=="D"]
 lines={}
