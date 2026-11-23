@@ -20,6 +20,7 @@ Why this picture: the order in which the design changed and why.
 | 23 Nov 2026 | Database rows "try 2" and "g" are excluded | No known person behind them; likely test runs | Counting every row |
 | 23 Nov 2026 | Headline uses the 160 judgments with saved answers; three verbally reported 30-line scores are shown only as a secondary figure | The reported scores cannot be checked | Headline on all 250 |
 | 23 Nov 2026 | The public test stores line labels masked and ships only its 20 lines | Labels were readable in the page source | Plain labels |
+| 23 Nov 2026 | The public test now shows right or wrong after every line; these rounds save as set "DF" and are kept apart from the blind results | Friends wanted instant feedback; feedback lets people learn during a round, so mixing would bias accuracy upward | Replacing the blind test |
 
 ## Results table
 
