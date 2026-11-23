@@ -27,7 +27,7 @@ Why this picture: the attack chain, and the one step this study tests.
 
 ## Result so far (pilot)
 
-Ten people who know me judged single lines as "really him" or "AI twin". On the 160 judgments with saved answers they were right 78 times: **49%, a coin flip** (95% interval 41% to 56%, exact binomial p = 0.81; averaged per judge, also 49%). Adding three friends' reported scores gives 111 of 250 (44%). Twin lines were called "him" as often as my real ones (47 and 45 of 80). Four judges saw the same 20 lines and agreed unanimously on one, a twin line they all believed.
+Ten people who know me judged single lines as "really him" or "AI twin". On the 160 judgments with saved answers they were right 78 times: **49%, a coin flip** (95% interval 41% to 56%, exact binomial p = 0.81; averaged per judge, also 49%). Adding three friends' reported scores gives 111 of 250 (44%). Twin lines were called "him" as often as my real ones (47 and 45 of 80). This is evidence of no skill, not just a small sample: the 160 judgments could detect 61% accuracy, an equivalence test places accuracy within 50% ± 10 points (p = 0.015), the Bayes factor favours guessing about 10 to 1, and a simple style detector also failed (59%, p = 0.11). Four judges saw the same 20 lines and agreed unanimously on one, a twin line they all believed.
 
 ```mermaid
 flowchart LR
@@ -72,6 +72,7 @@ Why this picture: lines feed the two tests, judgments feed one script, and every
 | `data/lines.json` | All 95 lines with id, set (A, B, C; set D is a fixed 20 drawn from these) and source | Real lines filtered by hand-written rules from my Bee export; twin lines written by Claude after reading them |
 | `data/results.json` | Anonymised judgments from each participant | Exported from the two tests, names replaced with P1 to P10. P8 to P10 are score-only rounds (reported, rounded; no per-line answers) |
 | `analysis/analyze.py` | Accuracy, twin pass rate, exact binomial test, Wilson intervals | Python standard library only |
+| `analysis/rigor.py`, `analysis/rigor.json` | Power, equivalence test, Bayes factor, Fleiss' kappa and a machine style detector with a permutation test | `python3 analysis/rigor.py` |
 | `analysis/summary.json` | Output of the script | `python3 analysis/analyze.py` |
 | `app/me-or-machine.html` | The test as published privately on claude.ai (sets A to C) | Single HTML page using the artifact's own data store |
 | `public-test/index.html` | The public 20-line test friends open on their phones (set D) | Static page that inserts into an insert-only Supabase table |

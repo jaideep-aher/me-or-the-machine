@@ -81,8 +81,20 @@ code{font-size:9pt;background:var(--soft);padding:0 3pt;border-radius:2pt}
 <li><b>Low agreement.</b> On set D, four judges agreed unanimously on just 1 of 20 lines: a twin line about a biryani place near campus, which all four believed. Their majority vote was right on 3 lines, wrong on 5 and tied on 12, so pooling judges did not help.</li>
 </ul>
 
+<h3>3.1 Robustness: is this evidence of no ability, or just too little data?</h3>
+<p>A non-significant result can mean either. Five further checks (<code>analysis/rigor.py</code>) separate the two.</p>
+<table>
+<tr><th>Check</th><th>Result</th><th>What it means</th></tr>
+<tr><td>Power</td><td>With 160 judgments, a true accuracy of 61% would be detected 80% of the time</td><td>Any real skill above about 61% would very likely have shown up</td></tr>
+<tr><td>Equivalence test (TOST, bounds 40% to 60%)</td><td>p = 0.015</td><td>Accuracy is statistically inside 50% ± 10 points</td></tr>
+<tr><td>Bayes factor, guessing vs some ability (uniform prior)</td><td>BF<sub>01</sub> = 9.6</td><td>The data are about ten times more likely under pure guessing</td></tr>
+<tr><td>Fleiss' kappa, four judges on set D</td><td>κ = −0.17</td><td>Judges agreed with each other less than chance</td></tr>
+<tr><td>Machine baseline: nearest-centroid detector on 10 surface features, leave-one-out on all 95 lines</td><td>56 of 95 (59%), permutation p = 0.11</td><td>A simple style detector cannot reliably separate the lines either</td></tr>
+</table>
+<p>Together these turn "not significant" into a positive statement: in this format, close contacts performed at chance, and this sample was large enough to have caught moderate skill.</p>
+
 <h2>4. Discussion</h2>
-<p>With one sentence and no context, people who know me well could not separate my speech from an imitation. Their errors were not random noise around a skill; they were the absence of a usable signal, plus a lean towards trust. The partner, who knows me best, scored exactly 50%, and accuracy on saved answers (49%) sat on chance. This matters for the threat in Figure 1: the cheapest attack is a short message, and that is exactly the format where human detection failed.</p>
+<p>With one sentence and no context, people who know me well could not separate my speech from an imitation. Their errors were not random noise around a skill; they were the absence of a usable signal, plus a lean towards trust. The equivalence test and Bayes factor in section 3.1 show this is evidence of no ability, not only a lack of data. The partner, who knows me best, scored exactly 50%, and accuracy on saved answers (49%) sat on chance. This matters for the threat in Figure 1: the cheapest attack is a short message, and that is exactly the format where human detection failed.</p>
 <p>The result does not show that an AI can impersonate me in a conversation. Shared memories, follow-up questions and timing are likely to help a judge, and that is the obvious defence: a question only the real person can answer, or a call back on a known number.</p>
 
 <h2>5. Limitations</h2>

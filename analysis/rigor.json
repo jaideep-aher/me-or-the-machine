@@ -1,0 +1,29 @@
+{
+ "power": {
+  "n": 160,
+  "critical_correct": 93,
+  "min_detectable_accuracy_80pct_power": 0.611
+ },
+ "equivalence_tost": {
+  "bounds": [
+   0.4,
+   0.6
+  ],
+  "p": 0.015269301606435248
+ },
+ "bayes_factor_01": 9.648183893734824,
+ "fleiss_kappa_set_d": {
+  "kappa": -0.16825396825396827,
+  "lines": 20,
+  "judges": 4
+ },
+ "machine_baseline": {
+  "method": "nearest centroid on 10 surface features, leave-one-out",
+  "lines": 95,
+  "correct": 56,
+  "accuracy": 0.5894736842105263,
+  "p_vs_chance": 0.10017333048675542,
+  "permutation_p": 0.10631229235880399,
+  "permutations": 300
+ }
+}
