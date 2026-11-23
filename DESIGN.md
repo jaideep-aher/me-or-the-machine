@@ -25,4 +25,4 @@ Why this picture: all three surfaces read the same tokens, so they look like one
 - **Icons and imagery:** none; the numbers and the quoted lines are the imagery.
 - **Copy voice:** short plain sentences, first person, no hype words.
 - **Forbidden:** gradients, glass, emoji, centred hero with feature cards, purple.
-- **Not yet done:** reference study, a mock reviewed before build, and the critique and accessibility passes. The pages were built directly under deadline.
+- **Status:** tokens are shared by the page, test, poster and report; the page was checked at 375 and 1440 px, dark theme shown; light theme not screenshotted yet.

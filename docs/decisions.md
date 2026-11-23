@@ -17,6 +17,9 @@ Why this picture: the order in which the design changed and why.
 | 22 Nov 2026 | Repository is private, shared with instructors | Owner's choice | Public repository |
 | 22 Nov 2026 | Public test stores results in a Supabase table inside the existing `campus-closet` project | Friends have no Claude account; no new paid project | A new Supabase project |
 | 22 Nov 2026 | Public test uses one fixed set of 20 lines (set D) | Several judges on the same lines gives per-line statistics | Random deal per friend |
+| 23 Nov 2026 | Database rows "try 2" and "g" are excluded | No known person behind them; likely test runs | Counting every row |
+| 23 Nov 2026 | Headline uses the 160 judgments with saved answers; three verbally reported 30-line scores are shown only as a secondary figure | The reported scores cannot be checked | Headline on all 250 |
+| 23 Nov 2026 | The public test stores line labels masked and ships only its 20 lines | Labels were readable in the page source | Plain labels |
 
 ## Results table
 

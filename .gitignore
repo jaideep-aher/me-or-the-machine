@@ -4,3 +4,7 @@ data/raw_results/
 __pycache__/
 .claude/
 .impeccable/
+
+# Build copies for the public site repo
+site/play/
+site/*.pdf

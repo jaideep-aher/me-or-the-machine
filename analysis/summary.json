@@ -1,4 +1,180 @@
 {
+ "judge_level_saved": {
+  "judges": 7,
+  "mean_accuracy": 0.4928571428571429,
+  "above": 1,
+  "below": 3,
+  "at_half": 3,
+  "sign_test_p": 0.625,
+  "t": -0.18569533817705125,
+  "t_p": 0.852683684334643,
+  "cluster_bootstrap_ci95": [
+   0.43125,
+   0.56
+  ]
+ },
+ "judge_level_all": {
+  "judges": 10,
+  "mean_accuracy": 0.455,
+  "above": 1,
+  "below": 5,
+  "at_half": 4,
+  "sign_test_p": 0.21875,
+  "t": -1.13189888200586,
+  "t_p": 0.25767694877871006,
+  "cluster_bootstrap_ci95": [
+   0.36923076923076925,
+   0.5181818181818182
+  ]
+ },
+ "signal_detection": {
+  "hit_rate": 0.5625,
+  "false_alarm_rate": 0.5875,
+  "d_prime": -0.06380802838739985,
+  "criterion_c": -0.1892146988038706
+ },
+ "items_seen_by_2_or_more": [
+  {
+   "line": 4,
+   "source": "real",
+   "text": "No, but then you have to create the account, you have to verify the OTP and all that stuff.",
+   "judges": 5,
+   "called_him": 4
+  },
+  {
+   "line": 16,
+   "source": "real",
+   "text": "I don't think you should get this one though.",
+   "judges": 5,
+   "called_him": 4
+  },
+  {
+   "line": 39,
+   "source": "twin",
+   "text": "Like you write the prompt once and then it just keeps running in the background and stuff like that.",
+   "judges": 5,
+   "called_him": 4
+  },
+  {
+   "line": 49,
+   "source": "real",
+   "text": "Oh my god this guy has not replied man.",
+   "judges": 5,
+   "called_him": 4
+  },
+  {
+   "line": 56,
+   "source": "twin",
+   "text": "Oh my god, why is this wifi so slow today man.",
+   "judges": 5,
+   "called_him": 4
+  },
+  {
+   "line": 62,
+   "source": "twin",
+   "text": "There's this place near campus, they do really good biryani, we should go sometime.",
+   "judges": 5,
+   "called_him": 4
+  },
+  {
+   "line": 2,
+   "source": "real",
+   "text": "Yeah, I went to, I went to, I think I went to 15 parties in two days.",
+   "judges": 5,
+   "called_him": 3
+  },
+  {
+   "line": 13,
+   "source": "twin",
+   "text": "No, no, I already tried that, it works on my laptop but not on the phone.",
+   "judges": 5,
+   "called_him": 3
+  },
+  {
+   "line": 14,
+   "source": "twin",
+   "text": "So basically the professor was like, just build something crazy, and I was like, okay, sure.",
+   "judges": 5,
+   "called_him": 3
+  },
+  {
+   "line": 44,
+   "source": "twin",
+   "text": "And then the demo crashed right when I opened it in front of everyone.",
+   "judges": 5,
+   "called_him": 3
+  },
+  {
+   "line": 47,
+   "source": "real",
+   "text": "I'm not gonna lie, it knows so many things about me.",
+   "judges": 5,
+   "called_him": 3
+  },
+  {
+   "line": 59,
+   "source": "twin",
+   "text": "I'm not gonna lie, I didn't read the paper, I just asked the AI to explain it.",
+   "judges": 5,
+   "called_him": 3
+  },
+  {
+   "line": 69,
+   "source": "real",
+   "text": "It's a thing that I wear on my head.",
+   "judges": 5,
+   "called_him": 3
+  },
+  {
+   "line": 84,
+   "source": "twin",
+   "text": "It's a thing that sits on my wrist and listens the whole day.",
+   "judges": 5,
+   "called_him": 3
+  },
+  {
+   "line": 95,
+   "source": "twin",
+   "text": "I gave it my calendar, and then whatever deadline comes, it calls me on that.",
+   "judges": 5,
+   "called_him": 3
+  },
+  {
+   "line": 19,
+   "source": "real",
+   "text": "Do you know there's a phone brand called Nothing?",
+   "judges": 4,
+   "called_him": 2
+  },
+  {
+   "line": 24,
+   "source": "real",
+   "text": "Because one time a waymo dropped me on a hill, on a slope, and I was unable to open the door.",
+   "judges": 4,
+   "called_him": 2
+  },
+  {
+   "line": 55,
+   "source": "real",
+   "text": "Oh my god, it's way too much cheaper.",
+   "judges": 5,
+   "called_him": 2
+  },
+  {
+   "line": 75,
+   "source": "real",
+   "text": "Motherboard means like, you have a PC, right?",
+   "judges": 5,
+   "called_him": 2
+  },
+  {
+   "line": 90,
+   "source": "twin",
+   "text": "API means like, one app is talking to another app, right?",
+   "judges": 5,
+   "called_him": 2
+  }
+ ],
  "all_participants": 10,
  "all_judgments": 250,
  "all_correct": 111,

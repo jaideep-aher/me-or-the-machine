@@ -27,7 +27,7 @@ Why this picture: the attack chain, and the one step this study tests.
 
 ## Result so far (pilot)
 
-Ten people who know me judged 250 single lines as "really him" or "AI twin". They were right 111 times: **44%, no better than a coin flip** (95% interval 38% to 51%, exact binomial p = 0.09). Where answers were saved (160 judgments), twin lines were called "him" more often than my real ones (47 of 80 against 45 of 80). Four judges saw the same 20 lines and agreed unanimously on one, a twin line they all believed.
+Ten people who know me judged single lines as "really him" or "AI twin". On the 160 judgments with saved answers they were right 78 times: **49%, a coin flip** (95% interval 41% to 56%, exact binomial p = 0.81; averaged per judge, also 49%). Adding three friends' reported scores gives 111 of 250 (44%). Twin lines were called "him" as often as my real ones (47 and 45 of 80). Four judges saw the same 20 lines and agreed unanimously on one, a twin line they all believed.
 
 ```mermaid
 flowchart LR
@@ -81,6 +81,8 @@ Why this picture: lines feed the two tests, judgments feed one script, and every
 | `samples/pilot10.json` | The first 10 topic-matched pairs (abandoned format) | Kept to show the design change |
 | `DESIGN.md` | Colours and type shared by the page, test, poster and report | |
 | `docs/decisions.md` | Dated design decisions, rejected options, database schema | |
+| `docs/review/` | Two rounds of self-review: roast, audit and rubric grade | |
+| `site/template.html`, `site/build.py` | Page source and the script that fills its charts from `data/` and `analysis/summary.json` | `python3 site/build.py` |
 
 ## Run it
 
@@ -107,7 +109,7 @@ The public test posts each finished round to a Supabase table (`me_or_machine_re
 ## Data and API requirements
 
 - **Real lines** come from my own Bee wearable export, which is not in this repository. Only the 48 chosen lines are included. They are speech-to-text and keep its recognition errors.
-- **Twin lines** were written by Claude (Opus) inside a chat session, after it had read the real lines. No API key is needed to reproduce the analysis. Regenerating twin lines with a script is future work.
+- **Twin lines** were written by a language model (Claude Opus) inside a chat session, after it had read the real lines. No API key is needed to reproduce the analysis. Regenerating twin lines with a script is future work.
 - **Judgments** are stored with participant labels P1, P2 and so on. Names stay out of the repository.
 
 ## Design decisions

@@ -6,7 +6,8 @@ and writes analysis/summary.json. Standard library only.
 
 Run:  python3 analysis/analyze.py
 """
-import json, math, pathlib
+import json, math, pathlib, random
+from statistics import NormalDist, mean, stdev
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
@@ -26,6 +27,31 @@ def binom_two_sided(k, n, p=0.5):
     """Exact two-sided binomial p-value: sum of outcomes as or less likely than k."""
     pmf = [math.comb(n, i) * p**i * (1 - p) ** (n - i) for i in range(n + 1)]
     return min(1.0, sum(x for x in pmf if x <= pmf[k] + 1e-12))
+
+
+def sign_test(above, below):
+    """Two-sided sign test: judges above vs below 50%, ties dropped."""
+    n = above + below
+    return binom_two_sided(min(above, below), n) if n else 1.0
+
+
+def t_test_vs_half(xs):
+    """One-sample t statistic of per-judge accuracy against 0.5 and a normal-approximation p."""
+    if len(xs) < 2 or stdev(xs) == 0:
+        return 0.0, 1.0
+    t = (mean(xs) - 0.5) / (stdev(xs) / math.sqrt(len(xs)))
+    return t, 2 * (1 - NormalDist().cdf(abs(t)))
+
+
+def cluster_bootstrap(judges, reps=10000, seed=590):
+    """95% interval for pooled accuracy, resampling whole judges (keeps their answers together)."""
+    rng = random.Random(seed)
+    out = []
+    for _ in range(reps):
+        pick = [judges[rng.randrange(len(judges))] for _ in judges]
+        out.append(sum(k for k, n in pick) / sum(n for k, n in pick))
+    out.sort()
+    return out[int(.025 * reps)], out[int(.975 * reps) - 1]
 
 
 def main():
@@ -72,7 +98,33 @@ def main():
     all_ok = tot["ok"] + sum(r["correct"] for r in score_only)
     alo, ahi = wilson(all_ok, all_n)
     lo, hi = wilson(tot["ok"], tot["n"])
+    # Judge-level view: one accuracy per judge, so no judge counts more than once.
+    saved_j = [(r["correct"], r["n"]) for r in rows if not r.get("score_only")]
+    all_j = [(r["correct"], r["n"]) for r in rows]
+    def judge_level(js):
+        accs = [k / n for k, n in js]
+        t, p = t_test_vs_half(accs)
+        lo_b, hi_b = cluster_bootstrap(js)
+        return dict(judges=len(js), mean_accuracy=mean(accs), above=sum(a > .5 for a in accs),
+                    below=sum(a < .5 for a in accs), at_half=sum(a == .5 for a in accs),
+                    sign_test_p=sign_test(sum(a > .5 for a in accs), sum(a < .5 for a in accs)),
+                    t=t, t_p=p, cluster_bootstrap_ci95=[lo_b, hi_b])
+    # Signal detection: "real" is the signal; a hit is a real line called real.
+    z = NormalDist().inv_cdf
+    H, F = tot["real_ok"] / tot["real"], tot["twin_pass"] / tot["twin"]
+    sdt = dict(hit_rate=H, false_alarm_rate=F, d_prime=z(H) - z(F), criterion_c=-(z(H) + z(F)) / 2)
+    # Item analysis: how often each line was called "him", for lines seen by 2 or more judges.
+    lines = {l["id"]: l for l in json.loads((ROOT / "data/lines.json").read_text())["lines"]}
+    seen = {}
+    for r in results:
+        for x in r["answers"]:
+            seen.setdefault(x["line"], []).append(x["guessedReal"])
+    items = sorted(([dict(line=l, source=lines[l]["source"], text=lines[l]["text"], judges=len(g),
+                          called_him=sum(g)) for l, g in seen.items() if len(g) >= 2]),
+                   key=lambda d: (-d["called_him"] / d["judges"], d["line"]))
     summary = dict(
+        judge_level_saved=judge_level(saved_j), judge_level_all=judge_level(all_j),
+        signal_detection=sdt, items_seen_by_2_or_more=items,
         all_participants=len(rows), all_judgments=all_n, all_correct=all_ok,
         all_accuracy=all_ok / all_n, all_accuracy_ci95=[alo, ahi], all_p_vs_chance=binom_two_sided(all_ok, all_n),
         set_d=set_d,
@@ -92,6 +144,11 @@ def main():
             print(f"{r['participant']:4} {r['set']:3} {r['correct']:>3}/{r['n']:<3} {r['real_recognised']:>4}/{r['real_lines']:<3} {r['twin_passed']:>7}/{r['twin_lines']:<3}")
     print(f"\nEveryone: {all_ok}/{all_n} right = {all_ok/all_n:.1%}  (95% CI {alo:.1%} to {ahi:.1%}, p vs 50% = {summary['all_p_vs_chance']:.3f})")
     print(f"Set D: {set_d}")
+    for k in ("judge_level_saved", "judge_level_all"):
+        j = summary[k]
+        print(f"{k}: mean {j['mean_accuracy']:.1%}, {j['above']} above / {j['below']} below / {j['at_half']} at 50%, sign p = {j['sign_test_p']:.2f}, t p = {j['t_p']:.2f}, judge bootstrap 95% {j['cluster_bootstrap_ci95'][0]:.1%} to {j['cluster_bootstrap_ci95'][1]:.1%}")
+    print(f"Signal detection: d' = {sdt['d_prime']:.2f}, c = {sdt['criterion_c']:.2f} (negative c = leans towards 'him')")
+    print(f"Lines seen by 2+ judges: {len(items)}; most believed: {items[0]['source']} line {items[0]['line']} ({items[0]['called_him']}/{items[0]['judges']})")
     print(f"Per-line rounds only: {tot['ok']}/{tot['n']} right = {summary['accuracy']:.1%}  (95% CI {lo:.1%} to {hi:.1%}, p vs 50% = {summary['p_vs_chance']:.2f})")
     print(f"Real lines called real: {tot['real_ok']}/{tot['real']} = {summary['real_called_real']:.1%}")
     print(f"Twin lines called real: {tot['twin_pass']}/{tot['twin']} = {summary['twin_called_real']:.1%}")

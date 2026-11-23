@@ -27,7 +27,7 @@ code{font-size:9pt;background:var(--soft);padding:0 3pt;border-radius:2pt}
 <h1>Me or the Machine</h1>
 <div class="meta">Can the people closest to me tell one sentence I said from one an AI wrote in my voice?<br>Jaideep Aher · AIPI 590 Responsible AI · Duke University · Fall 2026 · Final project report</div>
 
-<div class="abstract"><b>Abstract.</b> AI assistants and always-on voice wearables now hold enough of a person's speech to imitate them. I ran a blind discrimination test: ten people who know me (a partner and nine friends) judged 250 single lines, half taken from my own wearable recordings and half written by a language model told to sound like me. They were right on 111 of 250 judgments (44.4%, 95% Wilson interval 38.4% to 50.6%, exact binomial p = 0.09 against chance), no better than guessing. In the 160 judgments with saved answers, the twin's lines were judged "really him" slightly more often than my real ones (47 of 80 against 45 of 80). Judges leaned towards trust (58% "really him"), which favours an impostor, and four judges who saw the same 20 lines agreed unanimously on just one line, a twin line they all believed. For short text, "my friends would know it wasn't me" did not hold in this pilot.</div>
+<div class="abstract"><b>Abstract.</b> AI assistants and always-on voice wearables now hold enough of a person's speech to imitate them. I ran a blind discrimination test: ten people who know me (a partner and nine friends) judged 250 single lines, half taken from my own wearable recordings and half written by a language model told to sound like me. On the 160 judgments with saved answers they were right 78 times (48.8%, 95% Wilson interval 41.1% to 56.4%, exact binomial p = 0.81); averaged per judge, 49% (judge-level bootstrap 43% to 56%). Adding three friends' reported 30-line scores gives 111 of 250 (44.4%). Twin lines were judged "really him" as often as my real ones (47 and 45 of 80; sensitivity d′ = −0.06). Judges leaned towards trust (58% "really him"), which favours an impostor, and four judges who saw the same 20 lines agreed unanimously on just one line, a twin line they all believed. For short text, "my friends would know it wasn't me" did not hold in this pilot.</div>
 
 <h2>1. Goal and threat model</h2>
 <p><b>Goal.</b> Measure whether close contacts can act as a human safeguard against text impersonation built from a person's own recorded speech, and make the risk concrete enough for a non-technical audience to act on.</p>
@@ -74,15 +74,15 @@ code{font-size:9pt;background:var(--soft);padding:0 3pt;border-radius:2pt}
 <tr><td><b>All</b></td><td></td><td><b>250</b></td><td><b>111 (44.4%)</b></td><td><b>45 of 80 (56%)</b></td><td><b>47 of 80 (59%)</b></td></tr>
 </table>
 <ul>
-<li><b>No better than chance.</b> 111 of 250, 95% interval 38.4% to 50.6%, p = 0.09. Counting only rounds with saved answers: 78 of 160 (48.8%, p = 0.81). Only P2 (14 of 20) scored above chance, and that is not significant on its own (p ≈ 0.12).</li>
-<li><b>The twin passed more often than I did.</b> Twin lines were called "him" 47 of 80 times, my real lines 45 of 80.</li>
-<li><b>One judge was reliably wrong.</b> P10 scored 6 of 30, well below chance (p = 0.001). A score that low means a consistent rule for spotting me, applied backwards; without saved answers the rule cannot be identified.</li>
+<li><b>No better than chance.</b> Primary result, saved answers only: 78 of 160 (48.8%, 95% interval 41.1% to 56.4%, p = 0.81). Because decisions are clustered within judges, I also tested judges as units: mean accuracy 49%, bootstrap over judges 43% to 56%, one judge above 50% and three below (sign test p = 0.63). Including three reported scores: 111 of 250 (44.4%, p = 0.09). Only P2 (14 of 20) scored above chance, not significant on its own (p ≈ 0.12).</li>
+<li><b>No separation.</b> Twin lines were called "him" 47 of 80 times, my real lines 45 of 80. In signal-detection terms d′ = −0.06 and the criterion c = −0.19, a lean towards answering "him".</li>
+<li><b>One unusually low score.</b> P10 reported 6 of 30, which would be well below chance (p = 0.001) if exact. The answers were not saved, so I treat it as unverified.</li>
 <li><b>Trust bias.</b> Judges answered "really him" 58% of the time. In a real attack, where every message claims to be from me, this bias helps the impostor.</li>
 <li><b>Low agreement.</b> On set D, four judges agreed unanimously on just 1 of 20 lines: a twin line about a biryani place near campus, which all four believed. Their majority vote was right on 3 lines, wrong on 5 and tied on 12, so pooling judges did not help.</li>
 </ul>
 
 <h2>4. Discussion</h2>
-<p>With one sentence and no context, people who know me well could not separate my speech from an imitation. Their errors were not random noise around a skill; they were the absence of a usable signal, plus a lean towards trust. The partner, who knows me best, scored exactly 50%, and overall accuracy (44%) was slightly below chance. This matters for the threat in Figure 1: the cheapest attack is a short message, and that is exactly the format where human detection failed.</p>
+<p>With one sentence and no context, people who know me well could not separate my speech from an imitation. Their errors were not random noise around a skill; they were the absence of a usable signal, plus a lean towards trust. The partner, who knows me best, scored exactly 50%, and accuracy on saved answers (49%) sat on chance. This matters for the threat in Figure 1: the cheapest attack is a short message, and that is exactly the format where human detection failed.</p>
 <p>The result does not show that an AI can impersonate me in a conversation. Shared memories, follow-up questions and timing are likely to help a judge, and that is the obvious defence: a question only the real person can answer, or a call back on a known number.</p>
 
 <h2>5. Limitations</h2>
@@ -91,6 +91,7 @@ code{font-size:9pt;background:var(--soft);padding:0 3pt;border-radius:2pt}
 <li>Three 30-line scores were reported verbally and rounded; their line-by-line answers were not saved.</li>
 <li>No control twin that knows nothing about me, so the study cannot yet say how much my personal data contributed.</li>
 <li>Twin lines were written with the real lines in view, a best case for the twin.</li>
+<li>I chose real lines that stand alone without context, which may favour generic lines that are easy to imitate.</li>
 <li>Real lines carry speech-to-text errors that may make them look less like me; the twin's lines are clean.</li>
 <li>P1 was on a third attempt and had seen some lines before.</li>
 <li>Judges knew AI lines were present, which may have made them more suspicious than a real target.</li>
