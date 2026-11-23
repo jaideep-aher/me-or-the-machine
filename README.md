@@ -27,7 +27,7 @@ Why this picture: the attack chain, and the one step this study tests.
 
 ## Result so far (pilot)
 
-Six people who know me judged 140 single lines as "really him" or "AI twin". They were right 70 times: **50%, exactly a coin flip** (95% interval 42% to 58%, exact binomial p = 1.00). My real lines and the twin's lines were each called "him" 59% of the time (41 of 70). Three judges saw the same 20 lines; their majority vote was right on 10.
+Ten people who know me judged 250 single lines as "really him" or "AI twin". They were right 111 times: **44%, no better than a coin flip** (95% interval 38% to 51%, exact binomial p = 0.09). Where answers were saved (160 judgments), twin lines were called "him" more often than my real ones (47 of 80 against 45 of 80). Four judges saw the same 20 lines and agreed unanimously on one, a twin line they all believed.
 
 ```mermaid
 flowchart LR
@@ -46,7 +46,7 @@ Why this picture: it shows where each kind of line comes from and that judges on
 flowchart TB
     subgraph Inputs
       D1[data/lines.json<br/>95 lines, real or twin]
-      D2[data/results.json<br/>P1 to P6 judgments]
+      D2[data/results.json<br/>P1 to P10 judgments]
     end
     subgraph Tests
       A1[app/me-or-machine.html<br/>sets A to C, claude.ai]
@@ -70,7 +70,7 @@ Why this picture: lines feed the two tests, judgments feed one script, and every
 | Path | What it is | How it was made |
 |---|---|---|
 | `data/lines.json` | All 95 lines with id, set (A, B, C; set D is a fixed 20 drawn from these) and source | Real lines filtered by hand-written rules from my Bee export; twin lines written by Claude after reading them |
-| `data/results.json` | Anonymised judgments from each participant | Exported from the two tests, names replaced with P1 to P6 |
+| `data/results.json` | Anonymised judgments from each participant | Exported from the two tests, names replaced with P1 to P10. P8 to P10 are score-only rounds (reported, rounded; no per-line answers) |
 | `analysis/analyze.py` | Accuracy, twin pass rate, exact binomial test, Wilson intervals | Python standard library only |
 | `analysis/summary.json` | Output of the script | `python3 analysis/analyze.py` |
 | `app/me-or-machine.html` | The test as published privately on claude.ai (sets A to C) | Single HTML page using the artifact's own data store |
@@ -119,7 +119,8 @@ The public test posts each finished round to a Supabase table (`me_or_machine_re
 
 ## Known limitations
 
-- Six judges and 140 judgments across four line sets. This is a pilot.
+- Ten judges and 250 judgments. This is a pilot.
+- Three 30-line scores (P8 to P10) were reported verbally and rounded to the nearest possible score; their per-line answers were not saved, so they count only towards overall accuracy.
 - One judge was on a third attempt and had seen some lines before.
 - A single sentence carries little identity, so chance-level accuracy may reflect the format as much as the twin.
 - The twin lines were hand-prompted in a chat with the real lines in view. There is no control twin that knows nothing about me yet, so the study cannot say how much my personal data contributed.
@@ -133,7 +134,7 @@ A convincing twin is an impersonation tool. This repository ships no automated t
 ## Future work
 
 1. A control twin with no data about me, to measure what personal data adds.
-2. One fixed set judged by ten or more people, with a reason for each answer.
+2. One fixed set judged by twenty people, with a reason for each answer.
 3. Multi-turn exchanges, where shared history should help the judge.
 4. A defence: a shared phrase or question that a twin without lived memory fails.
 

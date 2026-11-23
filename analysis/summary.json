@@ -1,24 +1,41 @@
 {
- "participants": 6,
- "judgments": 140,
- "correct": 70,
- "accuracy": 0.5,
+ "all_participants": 10,
+ "all_judgments": 250,
+ "all_correct": 111,
+ "all_accuracy": 0.444,
+ "all_accuracy_ci95": [
+  0.383718776205658,
+  0.5059762146862998
+ ],
+ "all_p_vs_chance": 0.0875023303659631,
+ "set_d": {
+  "judges": 4,
+  "lines": 20,
+  "unanimous": 1,
+  "unanimous_wrong": 1,
+  "majority_right": 3,
+  "majority_tied": 12
+ },
+ "participants": 7,
+ "judgments": 160,
+ "correct": 78,
+ "accuracy": 0.4875,
  "accuracy_ci95": [
-  0.41828837957641574,
-  0.5817116204235843
+  0.41125433004043505,
+  0.5643318458758158
  ],
- "p_vs_chance": 1.0,
- "real_called_real": 0.5857142857142857,
+ "p_vs_chance": 0.8126155651898855,
+ "real_called_real": 0.5625,
  "real_counts": [
-  41,
-  70
+  45,
+  80
  ],
- "twin_called_real": 0.5857142857142857,
+ "twin_called_real": 0.5875,
  "twin_counts": [
-  41,
-  70
+  47,
+  80
  ],
- "said_real_rate": 0.5857142857142857,
+ "said_real_rate": 0.575,
  "per_participant": [
   {
    "participant": "P1",
@@ -97,6 +114,46 @@
    "twin_lines": 10,
    "twin_passed": 7,
    "said_real": 14
+  },
+  {
+   "participant": "P7",
+   "relationship": "friend",
+   "set": "D",
+   "attempt": 1,
+   "n": 20,
+   "correct": 8,
+   "real_lines": 10,
+   "real_recognised": 4,
+   "twin_lines": 10,
+   "twin_passed": 6,
+   "said_real": 10
+  },
+  {
+   "participant": "P8",
+   "relationship": "friend",
+   "set": "30 lines",
+   "attempt": 1,
+   "n": 30,
+   "correct": 12,
+   "score_only": true
+  },
+  {
+   "participant": "P9",
+   "relationship": "friend",
+   "set": "30 lines",
+   "attempt": 1,
+   "n": 30,
+   "correct": 15,
+   "score_only": true
+  },
+  {
+   "participant": "P10",
+   "relationship": "friend",
+   "set": "30 lines",
+   "attempt": 1,
+   "n": 30,
+   "correct": 6,
+   "score_only": true
   }
  ]
 }

@@ -752,5 +752,144 @@
     "guessedReal": true
    }
   ]
+ },
+ {
+  "participant": "P7",
+  "relationship": "friend",
+  "set": "D",
+  "attempt": 1,
+  "when": "2026-11-23T04:06:28Z",
+  "answers": [
+   {
+    "line": 2,
+    "real": true,
+    "guessedReal": false
+   },
+   {
+    "line": 4,
+    "real": true,
+    "guessedReal": false
+   },
+   {
+    "line": 13,
+    "real": false,
+    "guessedReal": true
+   },
+   {
+    "line": 14,
+    "real": false,
+    "guessedReal": false
+   },
+   {
+    "line": 16,
+    "real": true,
+    "guessedReal": true
+   },
+   {
+    "line": 19,
+    "real": true,
+    "guessedReal": true
+   },
+   {
+    "line": 24,
+    "real": true,
+    "guessedReal": false
+   },
+   {
+    "line": 39,
+    "real": false,
+    "guessedReal": false
+   },
+   {
+    "line": 44,
+    "real": false,
+    "guessedReal": true
+   },
+   {
+    "line": 47,
+    "real": true,
+    "guessedReal": false
+   },
+   {
+    "line": 49,
+    "real": true,
+    "guessedReal": false
+   },
+   {
+    "line": 55,
+    "real": true,
+    "guessedReal": false
+   },
+   {
+    "line": 56,
+    "real": false,
+    "guessedReal": true
+   },
+   {
+    "line": 59,
+    "real": false,
+    "guessedReal": false
+   },
+   {
+    "line": 62,
+    "real": false,
+    "guessedReal": true
+   },
+   {
+    "line": 69,
+    "real": true,
+    "guessedReal": true
+   },
+   {
+    "line": 75,
+    "real": true,
+    "guessedReal": true
+   },
+   {
+    "line": 84,
+    "real": false,
+    "guessedReal": true
+   },
+   {
+    "line": 90,
+    "real": false,
+    "guessedReal": true
+   },
+   {
+    "line": 95,
+    "real": false,
+    "guessedReal": false
+   }
+  ]
+ },
+ {
+  "participant": "P8",
+  "relationship": "friend",
+  "set": "30 lines",
+  "attempt": 1,
+  "score_only": true,
+  "correct": 12,
+  "n": 30,
+  "note": "Reported verbally as about 41% on 30 lines; rounded to the nearest possible score. No per-line answers were saved."
+ },
+ {
+  "participant": "P9",
+  "relationship": "friend",
+  "set": "30 lines",
+  "attempt": 1,
+  "score_only": true,
+  "correct": 15,
+  "n": 30,
+  "note": "Reported verbally as about 49% on 30 lines; rounded to the nearest possible score. No per-line answers were saved."
+ },
+ {
+  "participant": "P10",
+  "relationship": "friend",
+  "set": "30 lines",
+  "attempt": 1,
+  "score_only": true,
+  "correct": 6,
+  "n": 30,
+  "note": "Reported verbally as about 20% on 30 lines; rounded to the nearest possible score. No per-line answers were saved."
  }
 ]

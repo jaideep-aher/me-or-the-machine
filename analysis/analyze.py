@@ -31,6 +31,8 @@ def binom_two_sided(k, n, p=0.5):
 def main():
     results = json.loads((ROOT / "data/results.json").read_text())
     rows, tot = [], dict(n=0, ok=0, real=0, real_ok=0, twin=0, twin_pass=0, said_real=0)
+    score_only = [r for r in results if r.get("score_only")]
+    results = [r for r in results if not r.get("score_only")]
     for r in results:
         a = r["answers"]
         n = len(a)
@@ -45,9 +47,36 @@ def main():
                          twin_lines=twin, twin_passed=twin_pass, said_real=said))
         for k, v in dict(n=n, ok=ok, real=real, real_ok=real_ok, twin=twin, twin_pass=twin_pass, said_real=said).items():
             tot[k] += v
+    # Set D: several judges saw the same 20 lines. Unanimity and majority vote.
+    d = [r for r in results if r["set"] == "D"]
+    votes = {}
+    for r in d:
+        for x in r["answers"]:
+            votes.setdefault(x["line"], [x["real"], []])[1].append(x["guessedReal"])
+    unanimous = [l for l, (_, g) in votes.items() if len(set(g)) == 1]
+    maj_right = maj_tie = 0
+    for l, (real, g) in votes.items():
+        yes = sum(g)
+        if yes * 2 == len(g):
+            maj_tie += 1
+        elif (yes * 2 > len(g)) == real:
+            maj_right += 1
+    set_d = dict(judges=len(d), lines=len(votes), unanimous=len(unanimous),
+                 unanimous_wrong=sum((votes[l][1][0] != votes[l][0]) for l in unanimous),
+                 majority_right=maj_right, majority_tied=maj_tie)
+    # Per-line judgments plus score-only rounds (no line detail) for overall accuracy.
+    for r in score_only:
+        rows.append(dict(participant=r["participant"], relationship=r["relationship"], set=r["set"],
+                         attempt=r["attempt"], n=r["n"], correct=r["correct"], score_only=True))
+    all_n = tot["n"] + sum(r["n"] for r in score_only)
+    all_ok = tot["ok"] + sum(r["correct"] for r in score_only)
+    alo, ahi = wilson(all_ok, all_n)
     lo, hi = wilson(tot["ok"], tot["n"])
     summary = dict(
-        participants=len(rows), judgments=tot["n"], correct=tot["ok"],
+        all_participants=len(rows), all_judgments=all_n, all_correct=all_ok,
+        all_accuracy=all_ok / all_n, all_accuracy_ci95=[alo, ahi], all_p_vs_chance=binom_two_sided(all_ok, all_n),
+        set_d=set_d,
+        participants=len(results), judgments=tot["n"], correct=tot["ok"],
         accuracy=tot["ok"] / tot["n"], accuracy_ci95=[lo, hi],
         p_vs_chance=binom_two_sided(tot["ok"], tot["n"]),
         real_called_real=tot["real_ok"] / tot["real"], real_counts=[tot["real_ok"], tot["real"]],
@@ -57,8 +86,13 @@ def main():
     (ROOT / "analysis/summary.json").write_text(json.dumps(summary, indent=1))
     print(f"{'who':4} {'set':3} {'right':>7} {'real ok':>8} {'twin passed':>12}")
     for r in rows:
-        print(f"{r['participant']:4} {r['set']:3} {r['correct']:>3}/{r['n']:<3} {r['real_recognised']:>4}/{r['real_lines']:<3} {r['twin_passed']:>7}/{r['twin_lines']:<3}")
-    print(f"\nAll: {tot['ok']}/{tot['n']} right = {summary['accuracy']:.1%}  (95% CI {lo:.1%} to {hi:.1%}, p vs 50% = {summary['p_vs_chance']:.2f})")
+        if r.get("score_only"):
+            print(f"{r['participant']:4} {'30':3} {r['correct']:>3}/{r['n']:<3}   (score only)")
+        else:
+            print(f"{r['participant']:4} {r['set']:3} {r['correct']:>3}/{r['n']:<3} {r['real_recognised']:>4}/{r['real_lines']:<3} {r['twin_passed']:>7}/{r['twin_lines']:<3}")
+    print(f"\nEveryone: {all_ok}/{all_n} right = {all_ok/all_n:.1%}  (95% CI {alo:.1%} to {ahi:.1%}, p vs 50% = {summary['all_p_vs_chance']:.3f})")
+    print(f"Set D: {set_d}")
+    print(f"Per-line rounds only: {tot['ok']}/{tot['n']} right = {summary['accuracy']:.1%}  (95% CI {lo:.1%} to {hi:.1%}, p vs 50% = {summary['p_vs_chance']:.2f})")
     print(f"Real lines called real: {tot['real_ok']}/{tot['real']} = {summary['real_called_real']:.1%}")
     print(f"Twin lines called real: {tot['twin_pass']}/{tot['twin']} = {summary['twin_called_real']:.1%}")
 
